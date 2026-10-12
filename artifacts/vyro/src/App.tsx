@@ -93,7 +93,6 @@ function Header() {
   const [, setLocation] = useLocation();
   const search = (e: FormEvent) => { e.preventDefault(); setLocation(`/search?q=${encodeURIComponent(term)}`); setSearchOpen(false); };
   return <>
-    <div className="announcement">BETTER BEYOND&nbsp; / &nbsp;ENGINEERED FOR WHAT&apos;S NEXT</div>
     <header className="topbar">
       <button className="mobile-menu" aria-label="Open navigation" aria-expanded={mobileOpen} aria-controls="primary-nav" onClick={() => setMobileOpen(!mobileOpen)}><Menu size={20} /></button>
       <Brand />
