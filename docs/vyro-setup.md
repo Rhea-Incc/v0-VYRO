@@ -40,7 +40,7 @@ The `vyro_user_roles` table is server-side data. Never add a public endpoint or 
 - Prices are integer minor units (for example, cents for a two-decimal currency); the storefront formats them for display.
 - Variant stock is initialized at variant creation. Editing product details preserves stock; stock adjustments should be implemented as explicit audited inventory operations.
 - Product image paths must point to files verified as the exact VYRO product. Store paths in `/assets/<filename>` form.
-- Supplied cycling photos and videos contain third-party bike/component branding and promotional copy. Keep them in clearly labeled editorial/reference sections, not product listings or VYRO product claims; the embedded clips are click-to-play reference footage.
+- Supplied cycling photos and videos contain third-party bike/component branding and promotional copy. Keep them in clearly labeled editorial/reference sections, not product listings or VYRO product claims; the embedded clips autoplay muted when visible, pause offscreen, and remain paused for reduced-motion preferences.
 - Product search includes the product name, descriptions, and category name. Only published products and active categories appear publicly.
 
 ## Authentication and public data

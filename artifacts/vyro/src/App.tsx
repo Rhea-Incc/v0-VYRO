@@ -172,6 +172,35 @@ const editorialVideos = [
 ] as const;
 
 function ReferenceFootage() {
+  const videoRefs = useRef<Array<HTMLVideoElement | null>>([]);
+
+  useEffect(() => {
+    const videos = videoRefs.current.filter((video): video is HTMLVideoElement => video !== null);
+    if (!videos.length || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+    if (typeof IntersectionObserver === 'undefined') {
+      videos.forEach(video => { void video.play().catch(() => undefined); });
+      return () => videos.forEach(video => video.pause());
+    }
+
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        const video = entry.target as HTMLVideoElement;
+        if (entry.isIntersecting) {
+          void video.play().catch(() => undefined);
+        } else {
+          video.pause();
+        }
+      });
+    }, { threshold: 0.35 });
+
+    videos.forEach(video => observer.observe(video));
+    return () => {
+      observer.disconnect();
+      videos.forEach(video => video.pause());
+    };
+  }, []);
+
   return <section className="section reference-section" aria-labelledby="reference-footage-title">
     <div className="section-head">
       <div><span className="eyebrow">SUPPLIED VIDEO / REFERENCE ONLY</span><h2 id="reference-footage-title" className="display">Cycles in motion.</h2></div>
@@ -179,7 +208,7 @@ function ReferenceFootage() {
     </div>
     <div className="reference-video-grid">
       {editorialVideos.map((clip, index) => <article className="reference-video-card" key={clip.source}>
-        <video className="reference-video" controls playsInline preload="none" poster={assetUrl(clip.poster)} aria-label={clip.description}>
+        <video ref={video => { videoRefs.current[index] = video; }} className="reference-video" muted loop playsInline preload="none" poster={assetUrl(clip.poster)} aria-label={clip.description}>
           <source src={assetUrl(clip.source)} type="video/mp4" />
           Your browser does not support embedded video.
         </video>
