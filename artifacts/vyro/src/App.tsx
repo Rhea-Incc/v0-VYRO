@@ -158,6 +158,41 @@ function ProductGrid({ products }: { products: Product[] }) {
   return <div className="product-grid">{products.map(product => <ProductCard key={product.id} product={product} />)}</div>;
 }
 
+const editorialVideos = [
+  {
+    source: '/assets/cycling-reference-01.mp4',
+    poster: '/assets/cycling-reference-01-poster.webp',
+    description: 'Supplied product promo featuring a Production Privée SHAN 5 and preorder messaging.',
+  },
+  {
+    source: '/assets/cycling-reference-02.mp4',
+    poster: '/assets/cycling-reference-02-poster.webp',
+    description: 'Supplied cycling film; the bike shown is not verified as VYRO inventory.',
+  },
+] as const;
+
+function ReferenceFootage() {
+  return <section className="section reference-section" aria-labelledby="reference-footage-title">
+    <div className="section-head">
+      <div><span className="eyebrow">SUPPLIED VIDEO / REFERENCE ONLY</span><h2 id="reference-footage-title" className="display">Cycles in motion.</h2></div>
+      <p>These supplied cycling films are editorial references, not verified VYRO product footage.</p>
+    </div>
+    <div className="reference-video-grid">
+      {editorialVideos.map((clip, index) => <article className="reference-video-card" key={clip.source}>
+        <video className="reference-video" controls playsInline preload="none" poster={assetUrl(clip.poster)} aria-label={clip.description}>
+          <source src={assetUrl(clip.source)} type="video/mp4" />
+          Your browser does not support embedded video.
+        </video>
+        <div className="reference-video-caption">
+          <span className="eyebrow">REFERENCE FILM / 0{index + 1}</span>
+          <p>{clip.description}</p>
+        </div>
+      </article>)}
+    </div>
+    <p className="reference-video-note mono">BRAND MARKS AND PROMOTIONAL MESSAGES IN THESE CLIPS ARE NOT VYRO CLAIMS.</p>
+  </section>;
+}
+
 function HomePage() {
   const categories = useListCategories();
   const products = useListProducts({ page: 1, pageSize: 6, featured: true, sort: 'featured' });
@@ -174,6 +209,7 @@ function HomePage() {
         {categories.data?.length ? <div style={{ marginTop: 28, display: 'flex', gap: 10, flexWrap: 'wrap' }}>{categories.data.map(c => <Link key={c.id} className="filter" href={`/shop/${c.slug}`}>{c.name} <ArrowUpRight size={12} /></Link>)}</div> : null}
       </section>
       <section className="story-band"><div className="story-photo" role="img" aria-label="Gravel bike detail ready for a wet-weather ride" style={{ '--story-photo': `url("${assetUrl('/assets/gravel-detail.webp')}")` } as CSSProperties} /><div className="story-copy"><span className="eyebrow">MORE THAN MOVEMENT</span><h2 className="display">The road is only the beginning.</h2><p>VYRO exists for people who find their edge by going a little further. We make performance essentials for movement with a point of view.</p><Link className="btn btn-outline" href="/our-story">Meet VYRO <ArrowRight size={15} /></Link></div></section>
+      <ReferenceFootage />
       <section className="manifesto"><span className="eyebrow" style={{ color: '#182026' }}>A SIMPLE IDEA / A LONG WAY AHEAD</span><h2 className="display">Engineered for what&apos;s next.</h2><div className="manifesto-foot"><span>PERFORMANCE IS A WAY OF SEEING.</span><span>BETTER BEYOND <ArrowDownRight size={16} /></span></div></section>
       <section className="section"><div className="section-head"><div><span className="eyebrow">OUT THERE, IN HERE</span><h2 className="display">Field notes.</h2></div><Link className="btn btn-outline" href="/field-notes">Read the journal <ArrowRight size={15} /></Link></div>
         <div className="journal-grid"><Link className="journal-card" href="/field-notes/long-way-home" style={{ '--journal-photo': `url("${assetUrl('/assets/bike-overhead.webp')}")` } as CSSProperties}><div><span className="eyebrow">RIDE / ROUTE</span><h3>Find the longer way home.</h3><span className="mono">A FIELD NOTE FROM VYRO <ArrowUpRight size={13} /></span></div></Link><Link className="journal-card" href="/field-notes/details-that-matter" style={{ '--journal-photo': `url("${assetUrl('/assets/carbon-wheel.webp')}")` } as CSSProperties}><div><span className="eyebrow">EQUIPMENT / DETAIL</span><h3>Built for the in-between.</h3><span className="mono">A FIELD NOTE FROM VYRO <ArrowUpRight size={13} /></span></div></Link></div>

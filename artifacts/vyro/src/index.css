@@ -350,6 +350,13 @@ button{cursor:pointer}
 .story-copy{display:flex;flex-direction:column;justify-content:center;padding:70px 11%}
 .story-copy h2{font-size:clamp(48px,6vw,78px);line-height:.83;margin:20px 0}
 .story-copy p{max-width:390px;color:#c2c6c5;font-size:13px;line-height:1.8;margin:0 0 28px}
+.reference-section{background:#e7e4dc}
+.reference-video-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:24px;width:100%;max-width:744px;margin:0 auto}
+.reference-video-card{min-width:0}
+.reference-video{display:block;width:100%;aspect-ratio:9/16;object-fit:cover;background:#101417;border:1px solid rgba(24,32,38,.14)}
+.reference-video-caption{display:grid;gap:8px;padding:14px 1px 0}
+.reference-video-caption p{margin:0;color:#60686d;font-size:11px;line-height:1.55}
+.reference-video-note{margin:28px 0 0;color:#686e70;font-size:9px;line-height:1.6;letter-spacing:.1em}
 .manifesto{padding:115px 8vw;background:#f45119;color:#fff}
 .manifesto h2{font-size:clamp(55px,11vw,140px);line-height:.78;margin:20px 0;max-width:1100px}
 .manifesto-foot{display:flex;justify-content:space-between;align-items:end;font:10px 'IBM Plex Mono',monospace;letter-spacing:.15em;text-transform:uppercase}
@@ -446,6 +453,7 @@ button{cursor:pointer}
 .navlinks.open{display:flex}
 @media(max-width:680px){.topbar{height:65px;padding:0 5vw}.brand{width:110px}.brand img{width:105px}.mobile-menu{display:flex;background:none;border:0;padding:8px}.navlinks{display:none;position:absolute;left:0;right:0;top:65px;background:#f4f1e9;padding:15px 6vw 23px;flex-direction:column;align-items:flex-start;border-bottom:1px solid #d9d5ca}.navlinks.open{display:flex}.navactions .search-label{display:none}.hero{min-height:640px}.hero-inner{padding:0 7vw 54px}.hero h1{font-size:clamp(70px,19vw,110px)}.section{padding:66px 6vw}.section-head{align-items:start;flex-direction:column}.product-grid,.catalogue .product-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:20px 12px}.product-info{gap:8px}.product-info h3{font-size:17px}.story-band,.story-page{grid-template-columns:1fr}.story-photo{min-height:340px}.story-copy{padding:55px 8vw}.manifesto{padding:80px 7vw}.manifesto-foot{gap:15px;align-items:start;flex-direction:column}.journal-grid,.notes-list{grid-template-columns:1fr}.journal-card{min-height:300px}.newsletter{align-items:start;flex-direction:column;padding:48px 7vw}.newsletter form{width:100%}.footer{padding:45px 7vw 24px}.footer-main{grid-template-columns:1fr 1fr;gap:28px}.footer-main>div:first-child{grid-column:1/-1}.footer-bottom{flex-direction:column;gap:12px}.page-heading{padding:60px 7vw}.catalogue{padding:30px 6vw 70px}.catalogue-bar{align-items:start;flex-direction:column;gap:16px}.product-detail{grid-template-columns:1fr;padding:30px 6vw 70px;gap:28px}.detail-copy{padding:0}.admin-layout{grid-template-columns:1fr}.admin-side{padding:12px 5vw;flex-direction:row;overflow:auto}.admin-side .eyebrow{display:none}.admin-side a{white-space:nowrap;padding:10px}.admin-main{padding:34px 5vw}.admin-title{align-items:start;flex-direction:column}.admin-title h1{font-size:46px}.metric-grid{gap:8px}.metric{padding:14px}.metric strong{font-size:33px}.form-grid{grid-template-columns:1fr}.field.full{grid-column:auto}.auth-backdrop{grid-template-columns:1fr}.auth-art{min-height:210px;padding:8vw}.auth-art h1{font-size:60px}.auth-form{padding:45px 6vw}.story-page-copy{padding:60px 8vw}}
 @media(prefers-reduced-motion:reduce){*,*::before,*::after{scroll-behavior:auto!important;transition:none!important;animation:none!important}}
+@media(max-width:680px){.reference-video-grid{display:flex;gap:16px;margin:0 -6vw;padding:0 6vw 10px;overflow-x:auto;scroll-snap-type:x mandatory}.reference-video-card{flex:0 0 min(78vw,340px);scroll-snap-align:start}.reference-video-note{margin-top:20px}}
 
 /**
  * Using the elevate system.
