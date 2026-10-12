@@ -1,0 +1,1387 @@
+
+{
+  "project": {
+    "name": "VYRO",
+    "specification": "Master Foundation Prompt",
+    "version": "1.0.0",
+    "phase": 1,
+    "phase_name": "Foundation and Brand Experience",
+    "project_type": "Premium performance and outdoor lifestyle ecommerce",
+    "primary_objective": "Establish the definitive design system, responsive storefront, secure application architecture, and database-backed product catalogue on which all future VYRO commerce and customer experiences will be built.",
+    "brand_positioning": "Performance meets purpose. Engineered for what's next.",
+    "design_philosophy": [
+      "Apple-inspired simplicity without copying Apple's interface or identity",
+      "Human-first interactions and clear language",
+      "Premium editorial art direction",
+      "Technical precision and outdoor performance",
+      "Purposeful motion and restrained visual effects",
+      "Accessible and inclusive by default",
+      "Fast, reliable and predictable behaviour",
+      "Operational integrity before decorative complexity"
+    ],
+    "source_of_truth": [
+      "VYRO logo asset supplied by the project owner",
+      "VYRO vision board 01",
+      "VYRO vision board 02",
+      "This master specification",
+      "Approved database schema and application contracts"
+    ],
+    "non_negotiable": [
+      "Preserve the supplied VYRO logo proportions, geometry and orange slash.",
+      "Use a single canonical design token system across all routes.",
+      "Never duplicate product or inventory state in competing databases.",
+      "Never trust browser-submitted prices, stock quantities, permissions or payment outcomes.",
+      "Never expose service-role keys or other secrets to the client.",
+      "Never represent mock data, simulated payments or unimplemented features as production functionality.",
+      "Build the Phase 1 foundation to accommodate all four planned phases without unnecessary rewrites."
+    ]
+  },
+  "brand": {
+    "name": "VYRO",
+    "tagline_primary": "BETTER BEYOND.",
+    "tagline_secondary": "ENGINEERED FOR WHAT'S NEXT.",
+    "supporting_messages": [
+      "DRIVEN BY BETTER POSSIBILITIES",
+      "MORE THAN MOVEMENT",
+      "PERFORMANCE MEETS PURPOSE"
+    ],
+    "brand_pillars": [
+      {
+        "name": "Innovation",
+        "meaning": "Thoughtful engineering and continuous improvement"
+      },
+      {
+        "name": "Adventure",
+        "meaning": "Encouraging exploration and new horizons"
+      },
+      {
+        "name": "Performance",
+        "meaning": "Reliable, purposeful products made for use"
+      },
+      {
+        "name": "Community",
+        "meaning": "Helping people participate, discover and progress together"
+      }
+    ],
+    "voice": {
+      "attributes": [
+        "Confident",
+        "Concise",
+        "Human",
+        "Intelligent",
+        "Optimistic",
+        "Grounded",
+        "Performance-oriented"
+      ],
+      "rules": [
+        "Lead with customer benefit rather than marketing jargon.",
+        "Use short headlines and natural explanatory copy.",
+        "Be specific about materials, features, compatibility and availability.",
+        "Avoid artificial urgency and manipulative sales language.",
+        "Never invent product specifications, certifications or performance claims.",
+        "Explain errors and next steps in plain language.",
+        "Avoid excessive uppercase text in body copy."
+      ]
+    }
+  },
+  "design_system": {
+    "color_tokens": {
+      "charcoal": {
+        "value": "#171C20",
+        "usage": "Primary dark surfaces, navigation, footer, headings on light surfaces and premium product panels"
+      },
+      "charcoal_elevated": {
+        "value": "#242B31",
+        "usage": "Elevated dark surfaces, cards and admin panels"
+      },
+      "charcoal_deep": {
+        "value": "#101417",
+        "usage": "Dark hero sections and high-contrast media framing"
+      },
+      "vyro_orange": {
+        "value": "#FF6A00",
+        "usage": "Primary action accents, logo slash, active indicators, selected states and progress"
+      },
+      "vyro_orange_hover": {
+        "value": "#E85F00",
+        "usage": "Hover and pressed states for orange actions"
+      },
+      "off_white": {
+        "value": "#F5F3EC",
+        "usage": "Primary canvas, editorial sections and light surfaces"
+      },
+      "white": {
+        "value": "#FFFFFF",
+        "usage": "Product cards, form fields and selected clean surfaces"
+      },
+      "cool_gray": {
+        "value": "#B9BAB8",
+        "usage": "Secondary labels, technical details, borders and neutral visual elements"
+      },
+      "body_primary": {
+        "value": "#20262B",
+        "usage": "Primary text on light backgrounds"
+      },
+      "body_secondary": {
+        "value": "#60686D",
+        "usage": "Secondary text on light backgrounds"
+      },
+      "border_light": {
+        "value": "#DDDCD5",
+        "usage": "Subtle borders on light backgrounds"
+      },
+      "border_dark": {
+        "value": "#3A4248",
+        "usage": "Borders on dark backgrounds"
+      },
+      "success": {
+        "value": "#237A50",
+        "usage": "Confirmed success and completed operations"
+      },
+      "warning": {
+        "value": "#986000",
+        "usage": "Warnings and stock attention states"
+      },
+      "error": {
+        "value": "#B42318",
+        "usage": "Validation errors, failed actions and destructive-operation warnings"
+      }
+    },
+    "color_usage_rules": [
+      "Use off-white as the principal light canvas.",
+      "Use charcoal for premium contrast and dark brand storytelling.",
+      "Reserve orange for meaningful emphasis and actions.",
+      "Do not use orange as a substitute for every visual distinction.",
+      "Pair status colors with text or icons; never communicate status by color alone.",
+      "Validate contrast for actual foreground and background combinations.",
+      "Use accessible contrast ratios of at least 4.5:1 for normal text and 3:1 for large text and applicable interface graphics.",
+      "Never apply opacity in ways that make essential text inaccessible."
+    ],
+    "typography": {
+      "display": {
+        "direction": "Wide, geometric, technical, confident",
+        "preferred_fallbacks": [
+          "Space Grotesk",
+          "Arial",
+          "sans-serif"
+        ],
+        "usage": "Hero headlines, collection titles and major campaign statements"
+      },
+      "interface": {
+        "direction": "Clean, highly legible contemporary sans-serif",
+        "preferred_fallbacks": [
+          "Inter",
+          "Arial",
+          "sans-serif"
+        ],
+        "usage": "Navigation, product details, forms, buttons and body copy"
+      },
+      "technical": {
+        "direction": "Restrained monospaced typography",
+        "preferred_fallbacks": [
+          "IBM Plex Mono",
+          "monospace"
+        ],
+        "usage": "SKUs, measurements, technical identifiers and inventory metadata"
+      },
+      "scale": {
+        "hero_desktop": "clamp(3.5rem, 8vw, 7.5rem)",
+        "hero_mobile": "clamp(2.75rem, 12vw, 4.5rem)",
+        "heading_1": "clamp(2.5rem, 5vw, 4.5rem)",
+        "heading_2": "clamp(2rem, 3.5vw, 3.25rem)",
+        "heading_3": "clamp(1.5rem, 2.5vw, 2rem)",
+        "body_large": "1.125rem",
+        "body": "1rem",
+        "body_small": "0.875rem",
+        "caption": "0.75rem"
+      },
+      "rules": [
+        "Use fluid typography for major headings.",
+        "Maintain a clear heading hierarchy.",
+        "Use uppercase and letter spacing for short editorial labels only.",
+        "Do not use excessively tracked uppercase text for paragraphs.",
+        "Keep long-form reading comfortable with approximately 60 to 75 characters per line.",
+        "Load fonts efficiently and provide robust system fallbacks."
+      ]
+    },
+    "layout": {
+      "max_content_width": "1440px",
+      "reading_width": "720px",
+      "desktop_grid": "12 columns",
+      "tablet_grid": "8 columns",
+      "mobile_grid": "4 columns",
+      "page_gutter_desktop": "48px",
+      "page_gutter_tablet": "32px",
+      "page_gutter_mobile": "20px",
+      "spacing_base": "4px",
+      "spacing_scale": [
+        4,
+        8,
+        12,
+        16,
+        24,
+        32,
+        48,
+        64,
+        96,
+        128
+      ],
+      "breakpoints": {
+        "mobile": "up to 639px",
+        "tablet": "640px to 1023px",
+        "desktop": "1024px to 1439px",
+        "wide": "1440px and above"
+      },
+      "rules": [
+        "Use whitespace as an intentional design element.",
+        "Avoid unnecessary containers and nested borders.",
+        "Use consistent alignment across sections.",
+        "Prevent horizontal overflow at every supported viewport.",
+        "Allow content to reflow naturally instead of shrinking desktop layouts onto mobile."
+      ]
+    },
+    "components": {
+      "radius": {
+        "small": "6px",
+        "medium": "12px",
+        "large": "20px",
+        "pill": "999px"
+      },
+      "buttons": {
+        "minimum_height": "48px",
+        "primary": "Charcoal or orange fill with validated contrasting text",
+        "secondary": "Transparent or off-white fill with subtle border",
+        "tertiary": "Minimal text action with visible hover and focus states",
+        "rules": [
+          "Use action-oriented labels.",
+          "Show a loading state when an operation is pending.",
+          "Prevent duplicate submissions.",
+          "Provide disabled, hover, pressed and focus-visible states.",
+          "Do not use decorative buttons that have no action."
+        ]
+      },
+      "forms": {
+        "minimum_control_height": "48px",
+        "rules": [
+          "Use persistent visible labels.",
+          "Explain required fields and formatting expectations.",
+          "Validate on the client for convenience and on the server for authority.",
+          "Place actionable error messages close to affected controls.",
+          "Preserve valid user input after recoverable failures.",
+          "Support keyboard operation and accessible field descriptions."
+        ]
+      },
+      "cards": {
+        "product": "Image-led, minimal, restrained metadata and clear price",
+        "editorial": "Cinematic photography with short, useful descriptions",
+        "administrative": "Information-dense but calm, with strong alignment and hierarchy"
+      },
+      "interaction": {
+        "transition_duration": "150ms to 250ms for ordinary UI transitions",
+        "easing": "ease-out for entrances and ease-in-out for state changes",
+        "rules": [
+          "Use motion to explain a state change.",
+          "Avoid excessive parallax and scroll hijacking.",
+          "Respect prefers-reduced-motion.",
+          "Never delay essential navigation or purchase actions for animation.",
+          "Use skeletons only when loading is real and expected to take noticeable time."
+        ]
+      }
+    },
+    "logo": {
+      "source": "Owner-provided VYRO logo asset",
+      "rules": [
+        "Use the supplied original asset as the authoritative mark.",
+        "Preserve the distinctive orange slash and original geometry.",
+        "Do not recreate the logo with ordinary text when the asset is available.",
+        "Do not stretch, rotate, distort or recolor without explicit approval.",
+        "Provide appropriate clear space around the logo.",
+        "Use a high-quality SVG or transparent raster asset when available.",
+        "Create or approve a separate favicon asset rather than cropping arbitrarily."
+      ]
+    }
+  },
+  "art_direction": {
+    "visual_references": [
+      "VYRO vision board 01",
+      "VYRO vision board 02",
+      "Supplied VYRO logo"
+    ],
+    "photography": {
+      "subjects": [
+        "Mountain landscapes",
+        "Winding alpine roads",
+        "Technical black fabrics",
+        "Orange material details",
+        "Outdoor equipment",
+        "Products in authentic field environments",
+        "People exploring landscapes"
+      ],
+      "treatment": [
+        "Natural light and golden-hour warmth",
+        "Deep charcoal shadows",
+        "Controlled orange highlights",
+        "Realistic materials and believable product details",
+        "Editorial framing and selective close-ups",
+        "Consistent color grading"
+      ],
+      "rules": [
+        "Prefer authentic product photography for actual inventory listings.",
+        "Never present a generated product image as a verified representation of an actual SKU without approval.",
+        "Provide meaningful alternative text for informative images.",
+        "Use appropriate crops and responsive image sizes.",
+        "Avoid stretching images or placing text over visually busy areas without sufficient contrast."
+      ]
+    },
+    "composition": [
+      "Large cinematic hero imagery",
+      "Asymmetric editorial grids used selectively",
+      "Generous off-white negative space",
+      "Dark technical detail panels",
+      "Thin neutral dividers",
+      "Small orange accent lines",
+      "Precise image alignment",
+      "Clear separation between storytelling and commerce"
+    ],
+    "avoid": [
+      "Generic marketplace layouts",
+      "Excessive glassmorphism",
+      "Unnecessary gradients",
+      "Neon colors outside the established palette",
+      "Excessive drop shadows",
+      "Constant promotional banners",
+      "Fake countdown timers",
+      "Unverified customer reviews",
+      "Stock photography that contradicts actual products",
+      "Dense layouts that compromise product readability"
+    ]
+  },
+  "ux_principles": {
+    "priority_order": [
+      "Customer clarity",
+      "Accessibility",
+      "Trust and security",
+      "Task completion",
+      "Performance",
+      "Brand expression",
+      "Delight"
+    ],
+    "principles": [
+      {
+        "name": "Reduce cognitive load",
+        "requirement": "Present a clear primary action per major section and reveal secondary complexity when needed."
+      },
+      {
+        "name": "Keep the user in control",
+        "requirement": "Make navigation, cart editing, dismissing overlays and recovering from errors straightforward."
+      },
+      {
+        "name": "No forced account creation",
+        "requirement": "Allow product browsing and design checkout for guest use."
+      },
+      {
+        "name": "Be transparent",
+        "requirement": "Show accurate prices, availability, delivery information and purchase terms before order commitment."
+      },
+      {
+        "name": "Respect attention",
+        "requirement": "Avoid intrusive pop-ups, deceptive urgency and unnecessary notifications."
+      },
+      {
+        "name": "Make every state intentional",
+        "requirement": "Design loading, success, empty, error, offline and unavailable states."
+      },
+      {
+        "name": "Progressive enhancement",
+        "requirement": "Core content and navigation should remain usable when nonessential animation or optional scripts fail."
+      }
+    ],
+    "navigation": {
+      "desktop": [
+        "Shop",
+        "Explore",
+        "Our Story",
+        "Search",
+        "Account",
+        "Shopping Bag"
+      ],
+      "mobile": [
+        "Shop",
+        "Explore",
+        "Search",
+        "Account",
+        "Shopping Bag"
+      ],
+      "rules": [
+        "Keep the primary navigation compact.",
+        "Use a restrained sticky header where useful.",
+        "Provide a clearly labelled mobile menu.",
+        "Display a cart item count only when relevant.",
+        "Keep account and search actions discoverable.",
+        "Ensure every navigation destination resolves to a real route or a clearly explained coming-soon state."
+      ]
+    },
+    "homepage": {
+      "sections": [
+        {
+          "order": 1,
+          "name": "Announcement",
+          "purpose": "Show one useful operational message such as shipping information when configured",
+          "optional": true
+        },
+        {
+          "order": 2,
+          "name": "Header",
+          "purpose": "Brand navigation, search, account and shopping bag"
+        },
+        {
+          "order": 3,
+          "name": "Hero",
+          "headline": "BETTER BEYOND.",
+          "supporting_copy": "Performance meets purpose.",
+          "primary_action": "Explore the collection",
+          "secondary_action": "Discover VYRO",
+          "visual": "Cinematic mountain road or authentic outdoor imagery"
+        },
+        {
+          "order": 4,
+          "name": "Featured collection",
+          "purpose": "Introduce available products using real catalogue records"
+        },
+        {
+          "order": 5,
+          "name": "Brand philosophy",
+          "headline": "DRIVEN BY BETTER POSSIBILITIES",
+          "purpose": "Explain the relationship between innovation, adventure and performance"
+        },
+        {
+          "order": 6,
+          "name": "Product detail feature",
+          "purpose": "Showcase a verified product with imagery, useful specifications and a direct shopping action"
+        },
+        {
+          "order": 7,
+          "name": "Field Notes preview",
+          "purpose": "Offer useful outdoor guides and editorial content"
+        },
+        {
+          "order": 8,
+          "name": "Community",
+          "purpose": "Create room for real customer and outdoor community stories as they become available"
+        },
+        {
+          "order": 9,
+          "name": "Footer",
+          "purpose": "Support, contact, policies, newsletter preferences and social links"
+        }
+      ],
+      "rules": [
+        "Do not render empty product sections when the catalogue has no eligible products.",
+        "Do not invent discounts, reviews, customer counts or shipping promises.",
+        "Make the hero visually compelling without obstructing navigation.",
+        "Ensure the first meaningful shopping action is immediately understandable.",
+        "Allow merchandising sections to be managed through configuration or the admin system in a later phase."
+      ]
+    },
+    "catalogue": {
+      "routes": [
+        "/shop",
+        "/shop/[category]",
+        "/products/[slug]"
+      ],
+      "features": [
+        "Category browsing",
+        "Product search",
+        "Sort by relevant criteria",
+        "Filters appropriate to available product attributes",
+        "Clear price display",
+        "Real stock availability",
+        "Responsive product grid",
+        "Pagination or a considered load-more interaction",
+        "Accessible filter controls",
+        "Useful no-results state"
+      ],
+      "product_card": [
+        "Primary product image",
+        "Product name",
+        "Short descriptor when useful",
+        "Authoritative current price",
+        "Optional comparison price only when valid",
+        "Accurate availability",
+        "Optional wishlist control when implemented"
+      ],
+      "rules": [
+        "Products must come from the database.",
+        "Public catalogue queries must return only published and eligible products.",
+        "Out-of-stock products must not be presented as available.",
+        "Never fabricate product data to fill a visual grid.",
+        "Persist filter state in the URL when practical.",
+        "Treat search input as untrusted input and validate queries server-side."
+      ]
+    },
+    "product_detail": {
+      "required_sections": [
+        "Product image gallery",
+        "Product title",
+        "Current price and currency",
+        "Short product description",
+        "Variant selection where applicable",
+        "Availability",
+        "Quantity selection",
+        "Add-to-bag action",
+        "Detailed description",
+        "Materials and specifications",
+        "Care information when applicable",
+        "Delivery and returns information",
+        "Related products when valid relationships exist"
+      ],
+      "interaction_rules": [
+        "Require a valid variant when the product has variants.",
+        "Revalidate stock before accepting a purchase.",
+        "Disable invalid selections with a clear explanation.",
+        "Provide image zoom or an accessible alternative.",
+        "Keep selected variant and its price synchronized.",
+        "Announce cart updates accessibly.",
+        "Never guarantee a delivery date without a configured and reliable estimate."
+      ]
+    },
+    "global_states": {
+      "loading": "Use restrained skeletons or progress indicators for genuine asynchronous work.",
+      "empty": "Explain what is missing and provide a useful next action.",
+      "error": "Explain the problem in plain language and provide a recovery action.",
+      "success": "Confirm the completed action and its result.",
+      "offline": "Preserve recoverable local state and explain when reconnection is required.",
+      "unauthorized": "Protect restricted content and provide a safe sign-in route.",
+      "not_found": "Provide a helpful branded 404 page with working navigation.",
+      "unavailable": "Distinguish temporarily unavailable items from permanently archived products."
+    },
+    "accessibility": {
+      "target": "WCAG 2.2 AA",
+      "requirements": [
+        "Semantic HTML and meaningful heading order",
+        "Full keyboard navigation",
+        "Visible focus indicators",
+        "Accessible names for icon-only controls",
+        "Correct labels and descriptions for form fields",
+        "Accessible validation and error announcements",
+        "Sufficient color contrast",
+        "Reduced-motion support",
+        "Responsive zoom and text resizing",
+        "Touch targets designed around approximately 44 by 44 CSS pixels or larger where practical",
+        "Alt text for meaningful imagery",
+        "Accessible dialogs with focus management",
+        "No keyboard traps",
+        "Status updates announced without unnecessarily interrupting users"
+      ]
+    }
+  },
+  "routes": {
+    "public": [
+      {
+        "path": "/",
+        "name": "Homepage",
+        "phase": 1
+      },
+      {
+        "path": "/shop",
+        "name": "Catalogue",
+        "phase": 1
+      },
+      {
+        "path": "/shop/[category]",
+        "name": "Category",
+        "phase": 1
+      },
+      {
+        "path": "/products/[slug]",
+        "name": "Product detail",
+        "phase": 1
+      },
+      {
+        "path": "/search",
+        "name": "Search",
+        "phase": 1
+      },
+      {
+        "path": "/our-story",
+        "name": "Brand story",
+        "phase": 1
+      },
+      {
+        "path": "/field-notes",
+        "name": "Editorial index",
+        "phase": 1
+      },
+      {
+        "path": "/field-notes/[slug]",
+        "name": "Editorial article",
+        "phase": 1
+      },
+      {
+        "path": "/contact",
+        "name": "Contact",
+        "phase": 1
+      },
+      {
+        "path": "/shipping",
+        "name": "Shipping information",
+        "phase": 1
+      },
+      {
+        "path": "/returns",
+        "name": "Returns information",
+        "phase": 1
+      },
+      {
+        "path": "/privacy",
+        "name": "Privacy policy",
+        "phase": 1
+      },
+      {
+        "path": "/terms",
+        "name": "Terms",
+        "phase": 1
+      }
+    ],
+    "account": [
+      {
+        "path": "/account",
+        "name": "Account overview",
+        "phase": 3
+      },
+      {
+        "path": "/account/orders",
+        "name": "Order history",
+        "phase": 3
+      },
+      {
+        "path": "/account/saved",
+        "name": "Saved products and kits",
+        "phase": 3
+      }
+    ],
+    "commerce": [
+      {
+        "path": "/cart",
+        "name": "Shopping bag",
+        "phase": 2
+      },
+      {
+        "path": "/checkout",
+        "name": "Checkout",
+        "phase": 2
+      },
+      {
+        "path": "/order-confirmation/[id]",
+        "name": "Order confirmation",
+        "phase": 2
+      }
+    ],
+    "administration": [
+      {
+        "path": "/admin",
+        "name": "Admin overview",
+        "phase": 1,
+        "scope": "Secure foundation and catalogue operations"
+      },
+      {
+        "path": "/admin/products",
+        "name": "Product management",
+        "phase": 1
+      },
+      {
+        "path": "/admin/products/new",
+        "name": "Create product",
+        "phase": 1
+      },
+      {
+        "path": "/admin/products/[id]",
+        "name": "Edit product",
+        "phase": 1
+      },
+      {
+        "path": "/admin/categories",
+        "name": "Category management",
+        "phase": 1
+      },
+      {
+        "path": "/admin/inventory",
+        "name": "Inventory management",
+        "phase": 2
+      },
+      {
+        "path": "/admin/orders",
+        "name": "Order management",
+        "phase": 2
+      },
+      {
+        "path": "/admin/customers",
+        "name": "Customer management",
+        "phase": 3
+      },
+      {
+        "path": "/admin/content",
+        "name": "Editorial and merchandising management",
+        "phase": 3
+      },
+      {
+        "path": "/admin/analytics",
+        "name": "Business analytics",
+        "phase": 4
+      }
+    ],
+    "routing_rules": [
+      "Use the framework's established routing conventions.",
+      "Use stable product identifiers and human-readable slugs.",
+      "Validate all dynamic route parameters.",
+      "Return meaningful not-found states.",
+      "Do not create dead navigation links.",
+      "Protect every admin route and every corresponding server operation.",
+      "A hidden navigation link is not an access-control mechanism."
+    ]
+  },
+  "technology": {
+    "frontend": {
+      "framework": "Next.js with App Router",
+      "language": "TypeScript",
+      "rendering": "Server Components by default; Client Components only for necessary interactivity",
+      "styling": "Tailwind CSS with semantic design tokens and reusable component variants",
+      "forms": "Accessible schema-validated forms",
+      "validation": "Shared validation schemas where appropriate",
+      "requirements": [
+        "Use strict TypeScript.",
+        "Keep components small and composable.",
+        "Separate presentation from business logic.",
+        "Avoid unnecessary client-side JavaScript.",
+        "Avoid duplicating shared logic between routes.",
+        "Use established package versions compatible with the project.",
+        "Preserve and inspect the existing starter before making architectural changes."
+      ]
+    },
+    "backend": {
+      "database": "Supabase PostgreSQL",
+      "authentication": "Supabase Auth",
+      "storage": "Supabase Storage for approved product and editorial media",
+      "server_logic": "Next.js server-side operations and route handlers",
+      "authorization": "Server-side role checks plus PostgreSQL row-level security",
+      "requirements": [
+        "Treat PostgreSQL as the authoritative catalogue and inventory source.",
+        "Use server-only database clients for privileged operations.",
+        "Never expose the Supabase service-role key.",
+        "Validate requests at every trusted boundary.",
+        "Use database constraints and transactions for integrity.",
+        "Use migrations for schema changes.",
+        "Keep secrets in environment variables.",
+        "Make privileged mutations auditable.",
+        "Avoid client-side direct writes to privileged tables."
+      ]
+    },
+    "deployment": {
+      "environments": [
+        "Local development",
+        "Preview or staging",
+        "Production"
+      ],
+      "requirements": [
+        "Keep environment configuration separate.",
+        "Run migrations through a controlled process.",
+        "Do not seed fake products into production.",
+        "Enable HTTPS in production.",
+        "Configure server error monitoring.",
+        "Document backup and recovery procedures.",
+        "Do not claim deployment or service connectivity until verified."
+      ]
+    }
+  },
+  "data_model": {
+    "conventions": {
+      "primary_keys": "UUID unless an externally meaningful identifier is required",
+      "timestamps": [
+        "created_at",
+        "updated_at"
+      ],
+      "currency": "ISO 4217 currency code",
+      "money": "Integer minor units or an explicitly defined precise decimal representation; never floating-point arithmetic",
+      "inventory": "Integer quantities with database constraints",
+      "slugs": "Unique, normalized, human-readable values",
+      "deletion": "Archive business records where historical references must be preserved",
+      "audit": "Record actor, action, target, timestamp and relevant change metadata"
+    },
+    "tables": {
+      "profiles": {
+        "purpose": "Customer profile associated with an authenticated user",
+        "fields": [
+          "id",
+          "display_name",
+          "created_at",
+          "updated_at"
+        ],
+        "rules": [
+          "The profile identifier references the authenticated user.",
+          "Customers can only access their own profile.",
+          "Privileged role assignments cannot be self-granted."
+        ]
+      },
+      "user_roles": {
+        "purpose": "Trusted authorization assignments",
+        "fields": [
+          "user_id",
+          "role",
+          "created_at"
+        ],
+        "allowed_roles": [
+          "customer",
+          "staff",
+          "admin"
+        ],
+        "rules": [
+          "Role changes require trusted server-side authorization.",
+          "Customers cannot promote themselves.",
+          "Admin permissions must be verified on the server."
+        ]
+      },
+      "categories": {
+        "purpose": "Hierarchical product taxonomy",
+        "fields": [
+          "id",
+          "name",
+          "slug",
+          "description",
+          "parent_id",
+          "image_path",
+          "sort_order",
+          "is_active",
+          "created_at",
+          "updated_at"
+        ]
+      },
+      "products": {
+        "purpose": "Shared product catalogue",
+        "fields": [
+          "id",
+          "category_id",
+          "name",
+          "slug",
+          "short_description",
+          "description",
+          "status",
+          "brand",
+          "featured",
+          "metadata",
+          "created_at",
+          "updated_at",
+          "published_at"
+        ],
+        "status_values": [
+          "draft",
+          "published",
+          "archived"
+        ],
+        "rules": [
+          "Only published products are publicly discoverable.",
+          "Archived products cannot be purchased.",
+          "Metadata must be validated and must not replace important structured fields."
+        ]
+      },
+      "product_variants": {
+        "purpose": "Purchasable SKU-level items",
+        "fields": [
+          "id",
+          "product_id",
+          "sku",
+          "name",
+          "options",
+          "price_minor",
+          "currency",
+          "compare_at_price_minor",
+          "weight",
+          "status",
+          "created_at",
+          "updated_at"
+        ],
+        "rules": [
+          "SKUs are unique.",
+          "Prices are non-negative and use a defined currency.",
+          "Comparison prices must be valid relative to the current price.",
+          "Every purchasable variant has an explicit purchase eligibility state."
+        ]
+      },
+      "product_images": {
+        "purpose": "Ordered product media",
+        "fields": [
+          "id",
+          "product_id",
+          "variant_id",
+          "storage_path",
+          "alt_text",
+          "sort_order",
+          "is_primary",
+          "created_at"
+        ],
+        "rules": [
+          "Store managed storage paths rather than arbitrary client-supplied executable content.",
+          "Validate image types and sizes.",
+          "Restrict upload and deletion permissions.",
+          "Require meaningful alternative text when appropriate."
+        ]
+      },
+      "inventory": {
+        "purpose": "Authoritative stock balance by variant and stock location",
+        "fields": [
+          "id",
+          "variant_id",
+          "location_id",
+          "on_hand",
+          "reserved",
+          "updated_at"
+        ],
+        "rules": [
+          "Quantities are integers.",
+          "On-hand and reserved quantities cannot be negative.",
+          "Available quantity is derived from on-hand minus reserved.",
+          "Use atomic database operations for stock reservation and release.",
+          "Do not let public clients directly update inventory."
+        ]
+      },
+      "inventory_locations": {
+        "purpose": "Physical or operational stock locations",
+        "fields": [
+          "id",
+          "name",
+          "code",
+          "is_active",
+          "created_at"
+        ]
+      },
+      "inventory_movements": {
+        "purpose": "Auditable inventory adjustments and transfers",
+        "fields": [
+          "id",
+          "variant_id",
+          "location_id",
+          "movement_type",
+          "quantity_delta",
+          "reference_type",
+          "reference_id",
+          "actor_id",
+          "reason",
+          "created_at"
+        ],
+        "rules": [
+          "Movement records are append-only for ordinary users.",
+          "Adjustments require an authorized actor and reason.",
+          "Movement records must reconcile with inventory balances.",
+          "Use controlled database functions for balance-changing operations."
+        ]
+      },
+      "orders": {
+        "purpose": "Customer purchase records for Phase 2",
+        "fields": [
+          "id",
+          "order_number",
+          "user_id",
+          "status",
+          "currency",
+          "subtotal_minor",
+          "discount_minor",
+          "shipping_minor",
+          "tax_minor",
+          "total_minor",
+          "shipping_address_snapshot",
+          "billing_address_snapshot",
+          "created_at",
+          "updated_at"
+        ],
+        "rules": [
+          "Amounts are calculated and validated server-side.",
+          "Historical order totals do not change when catalogue prices change.",
+          "Order numbers are unique.",
+          "Customer access is limited to the customer's own orders."
+        ]
+      },
+      "order_items": {
+        "purpose": "Immutable commercial snapshots for purchased items",
+        "fields": [
+          "id",
+          "order_id",
+          "variant_id",
+          "sku_snapshot",
+          "product_name_snapshot",
+          "variant_options_snapshot",
+          "unit_price_minor",
+          "quantity",
+          "line_total_minor"
+        ]
+      },
+      "payments": {
+        "purpose": "Payment-provider references and verified payment state",
+        "fields": [
+          "id",
+          "order_id",
+          "provider",
+          "provider_reference",
+          "status",
+          "amount_minor",
+          "currency",
+          "verified_at",
+          "created_at",
+          "updated_at"
+        ],
+        "rules": [
+          "Never store raw card numbers or card security codes.",
+          "Verify provider events before confirming payment.",
+          "Use idempotency for event processing.",
+          "Do not treat a redirect to a success page as proof of payment."
+        ]
+      },
+      "audit_logs": {
+        "purpose": "Security and administrative activity history",
+        "fields": [
+          "id",
+          "actor_id",
+          "action",
+          "entity_type",
+          "entity_id",
+          "change_summary",
+          "request_id",
+          "created_at"
+        ],
+        "rules": [
+          "Protect logs from unauthorized modification.",
+          "Never log passwords, secrets, payment credentials or unnecessary sensitive data.",
+          "Record privileged product and inventory mutations."
+        ]
+      }
+    },
+    "future_entities": [
+      "wishlists",
+      "wishlist_items",
+      "carts",
+      "cart_items",
+      "addresses",
+      "shipments",
+      "returns",
+      "discounts",
+      "discount_redemptions",
+      "reviews",
+      "editorial_articles",
+      "newsletter_subscriptions",
+      "customer_preferences",
+      "webhook_events"
+    ],
+    "migration_rules": [
+      "Inspect the existing schema before adding tables.",
+      "Use version-controlled SQL migrations.",
+      "Create foreign keys and appropriate indexes.",
+      "Define row-level security for every exposed table.",
+      "Test constraints, permissions and migration rollback strategy.",
+      "Do not create duplicate tables when an equivalent table already exists.",
+      "Keep future entities out of active production workflows until their behaviour is implemented and tested."
+    ]
+  },
+  "security": {
+    "baseline": "Least privilege and defence in depth",
+    "authentication": [
+      "Use the configured authentication provider.",
+      "Require authentication for all admin functions.",
+      "Use secure session handling.",
+      "Validate authorization on every privileged server operation.",
+      "Provide a documented administrator bootstrap procedure.",
+      "Avoid hardcoded credentials and public admin registration."
+    ],
+    "database": [
+      "Enable row-level security on exposed tables.",
+      "Write explicit policies for SELECT, INSERT, UPDATE and DELETE.",
+      "Separate public catalogue reads from privileged writes.",
+      "Deny access by default where permissions are unspecified.",
+      "Keep service credentials server-only.",
+      "Use transactions and database constraints for sensitive state changes."
+    ],
+    "application": [
+      "Validate request bodies, query parameters and route parameters.",
+      "Sanitize untrusted content before rendering.",
+      "Apply rate limits to authentication and sensitive endpoints.",
+      "Use CSRF protections where the chosen session and request architecture requires them.",
+      "Configure safe security headers and an appropriate content security policy.",
+      "Protect file uploads against type spoofing and oversized content.",
+      "Use generic public error responses and safe server-side logs.",
+      "Do not leak internal errors, tokens or environment configuration."
+    ],
+    "payments_future": [
+      "Verify webhook signatures.",
+      "Use idempotent payment-event processing.",
+      "Reconcile payment and order states.",
+      "Implement safe retry handling.",
+      "Prevent duplicate order fulfilment.",
+      "Reserve and release stock transactionally."
+    ]
+  },
+  "admin_experience": {
+    "design": "Operationally efficient, calm, precise and consistent with VYRO branding",
+    "layout": [
+      "Compact persistent sidebar on wide screens",
+      "Responsive navigation on small screens",
+      "Clear page title and contextual actions",
+      "Searchable and filterable data tables",
+      "Accessible create and edit forms",
+      "Visible save state and actionable validation",
+      "Confirmation for destructive or high-impact actions"
+    ],
+    "phase_1_capabilities": [
+      "Secure admin login",
+      "Product list backed by the database",
+      "Create product",
+      "Edit product",
+      "Manage publication status",
+      "Manage product categories",
+      "Set price and currency",
+      "Manage basic variant and SKU data",
+      "Manage product imagery",
+      "Display current stock where authorized",
+      "Display useful empty and error states"
+    ],
+    "product_form": [
+      "Product name",
+      "Slug",
+      "Category",
+      "Short description",
+      "Full description",
+      "Publication status",
+      "Featured status",
+      "Product images and alternative text",
+      "Variant options",
+      "SKU",
+      "Price",
+      "Currency",
+      "Initial stock or controlled inventory adjustment"
+    ],
+    "rules": [
+      "All successful mutations persist to the same database used by the storefront.",
+      "Show confirmation only after the server confirms success.",
+      "Preserve form data when a recoverable error occurs.",
+      "Protect concurrent edits against accidental silent overwrites.",
+      "Validate all fields on the server.",
+      "Record privileged changes in audit logs.",
+      "Do not claim that an inventory adjustment was recorded unless its transaction succeeded."
+    ]
+  },
+  "performance_and_seo": {
+    "performance": {
+      "targets": [
+        "Largest Contentful Paint at or below 2.5 seconds",
+        "Interaction to Next Paint at or below 200 milliseconds",
+        "Cumulative Layout Shift at or below 0.1"
+      ],
+      "measurement": "Evaluate Core Web Vitals at the 75th percentile when sufficient real-user data is available.",
+      "requirements": [
+        "Optimize images and use responsive image delivery.",
+        "Prioritize the actual hero asset without overloading the initial request.",
+        "Reserve image dimensions to reduce layout shifts.",
+        "Keep client JavaScript lean.",
+        "Avoid unnecessary database queries.",
+        "Add indexes based on real query patterns.",
+        "Use caching only where invalidation and catalogue freshness are understood.",
+        "Paginate large administrative and catalogue result sets."
+      ]
+    },
+    "seo": [
+      "Unique page titles and descriptions",
+      "Canonical URLs",
+      "Sitemap and robots configuration",
+      "Open Graph metadata",
+      "Semantic product and breadcrumb structured data where valid",
+      "Human-readable product slugs",
+      "Meaningful image alternative text",
+      "Correct indexability rules for private and internal routes",
+      "No indexing of staging environments",
+      "No fabricated prices, availability or review markup"
+    ],
+    "analytics": {
+      "phase": 1: "Define privacy-conscious event contracts without blocking the storefront on analytics.",
+      "future_events": [
+        "view_item",
+        "view_category",
+        "search",
+        "add_to_cart",
+        "begin_checkout",
+        "purchase",
+        "wishlist_add"
+      ],
+      "rules": [
+        "Do not send personal or payment-sensitive information to analytics.",
+        "Respect applicable consent requirements.",
+        "Avoid duplicate purchase events.",
+        "Keep analytics nonessential to core shopping functionality."
+      ]
+    }
+  },
+  "testing": {
+    "unit": [
+      "Price and currency utilities",
+      "Schema validation",
+      "Stock availability calculations",
+      "Slug generation",
+      "Product status rules",
+      "Permission helpers"
+    ],
+    "integration": [
+      "Product reads from the database",
+      "Authorized product creation and editing",
+      "Unauthenticated admin requests are rejected",
+      "Customers cannot modify administrative data",
+      "Published products are publicly discoverable",
+      "Draft and archived products are not publicly purchasable",
+      "Database constraints reject invalid records",
+      "Image upload permissions are enforced"
+    ],
+    "end_to_end": [
+      "Homepage to catalogue navigation",
+      "Search and filtering",
+      "Product detail rendering",
+      "Admin login and logout",
+      "Product creation and publication",
+      "Product edits appear in the storefront",
+      "Validation errors are recoverable",
+      "Responsive layouts work across supported widths",
+      "Keyboard-only navigation is usable"
+    ],
+    "future_commerce_tests": [
+      "Concurrent purchase attempts cannot oversell stock",
+      "Duplicate webhooks cannot duplicate fulfilment",
+      "Failed payments do not create falsely paid orders",
+      "Refunds and cancellations reconcile inventory correctly",
+      "Server-calculated totals cannot be overridden by browser input"
+    ]
+  },
+  "phase_1_acceptance_criteria": [
+    {
+      "id": "FND-001",
+      "criterion": "The logo, colors, typography and spacing use centralized design tokens."
+    },
+    {
+      "id": "FND-002",
+      "criterion": "The homepage and catalogue are responsive at mobile, tablet and desktop widths."
+    },
+    {
+      "id": "FND-003",
+      "criterion": "Product cards and product detail pages read actual database records."
+    },
+    {
+      "id": "FND-004",
+      "criterion": "An authorized administrator can create and edit a product through the admin portal."
+    },
+    {
+      "id": "FND-005",
+      "criterion": "Publishing or updating a product changes what the storefront displays after the expected cache invalidation."
+    },
+    {
+      "id": "FND-006",
+      "criterion": "Public users cannot access privileged admin operations or unpublished product data."
+    },
+    {
+      "id": "FND-007",
+      "criterion": "Database migrations, environment variables and local setup are documented."
+    },
+    {
+      "id": "FND-008",
+      "criterion": "Core pages have loading, empty, error, success and not-found states where applicable."
+    },
+    {
+      "id": "FND-009",
+      "criterion": "The interface supports keyboard navigation, visible focus and the agreed accessibility baseline."
+    },
+    {
+      "id": "FND-010",
+      "criterion": "Automated tests cover the principal catalogue and authorization workflows."
+    },
+    {
+      "id": "FND-011",
+      "criterion": "No secrets are exposed in client bundles, source control or public error messages."
+    },
+    {
+      "id": "FND-012",
+      "criterion": "All unfinished commerce features are explicitly identified and cannot be mistaken for operational features."
+    }
+  ],
+  "implementation_protocol": {
+    "step_1": "Inspect the existing VYRO starter, package manifest, routes, components, assets, migrations and environment configuration.",
+    "step_2": "Produce a concise audit identifying reusable code, defects, missing functionality and architectural risks.",
+    "step_3": "Preserve working features and avoid unnecessary rewrites.",
+    "step_4": "Implement centralized design tokens and reusable accessible UI components.",
+    "step_5": "Establish and test the database schema, authentication, roles and row-level security.",
+    "step_6": "Build the responsive homepage, navigation, catalogue, search and product detail foundation.",
+    "step_7": "Complete the database-backed admin catalogue and product editing workflow.",
+    "step_8": "Implement error handling, loading states, responsive refinements and accessibility improvements.",
+    "step_9": "Run type checking, linting, unit tests, integration tests and production build checks.",
+    "step_10": "Document all environment variables, migrations, setup commands, verified functionality and remaining gaps.",
+    "rules": [
+      "Work in small, verifiable increments.",
+      "Do not replace a working backend with mock data.",
+      "Do not invent successful integration results.",
+      "Do not add unnecessary dependencies.",
+      "Do not disable security controls to make development easier.",
+      "Do not proceed past a failed critical acceptance test without documenting and addressing it.",
+      "Ask for external credentials only when the corresponding integration is ready.",
+      "Use safe local seed data for development and explicitly separate it from production.",
+      "Treat future-phase requirements as architectural constraints, not permission to ship incomplete features."
+    ]
+  },
+  "deliverables": [
+    "A working Next.js and TypeScript application",
+    "A centralized VYRO design token system",
+    "Reusable accessible component library",
+    "Responsive public storefront foundation",
+    "Database-backed product catalogue",
+    "Secure administrator authentication and role enforcement",
+    "Admin product creation and editing workflow",
+    "Version-controlled database migrations and row-level security policies",
+    "Seed script for development data",
+    "Environment variable example without secrets",
+    "Automated test suite for critical Phase 1 workflows",
+    "Setup and deployment documentation",
+    "Architecture and database documentation",
+    "Phase 1 acceptance test report",
+    "Explicit Phase 2, Phase 3 and Phase 4 backlog"
+  ],
+  "definition_of_done": {
+    "design": "The approved VYRO design system is consistently applied across public and administrative interfaces.",
+    "functionality": "Every advertised Phase 1 action works and persists where applicable.",
+    "data": "The storefront and admin portal use the same authoritative product records.",
+    "security": "Authorization and database access controls are tested, not merely assumed.",
+    "quality": "Critical tests, type checks and production build checks pass.",
+    "documentation": "A new developer can configure and run the project using the written instructions.",
+    "transparency": "Unimplemented integrations and deployment requirements are documented accurately.",
+    "release_gate": "No critical security, data-integrity or core navigation defect remains unresolved."
+  },
+  "future_phase_contracts": {
+    "phase_2": [
+      "Build cart and checkout on top of validated product and variant records.",
+      "Introduce atomic stock reservations and order transactions.",
+      "Integrate a selected payment provider and verify payment webhooks.",
+      "Implement shipping, fulfilment, order management and refunds.",
+      "Maintain immutable commercial snapshots for orders."
+    ],
+    "phase_3": [
+      "Introduce customer accounts and persistent wishlists.",
+      "Build Your VYRO Kit and customer preferences.",
+      "Add editorial publishing, reviews and relevant recommendations.",
+      "Introduce self-service order support and retention features."
+    ],
+    "phase_4": [
+      "Complete end-to-end security and operational testing.",
+      "Deploy production infrastructure with backups and monitoring.",
+      "Configure search visibility, privacy-conscious analytics and support processes.",
+      "Use measured business performance to guide optimisation and growth."
+    ],
+    "compatibility_rules": [
+      "Preserve the public product and variant contracts.",
+      "Keep pricing and currency semantics consistent.",
+      "Do not bypass centralized inventory logic.",
+      "Extend the schema with reviewed migrations.",
+      "Keep authorization centralized and testable.",
+      "Maintain accessible components and the established visual language.",
+      "Do not introduce a second source of truth for any business-critical entity."
+    ]
+  },
+  "final_instruction": "Build VYRO as a cohesive premium commerce product, not a collection of disconnected screens. The visual identity, accessible UX, shared database, secure admin portal and future commerce workflows must form one consistent system. Inspect the existing project first, implement Phase 1 completely, verify every acceptance criterion, and report precisely what is working, what has been tested, and what remains before production."
+}

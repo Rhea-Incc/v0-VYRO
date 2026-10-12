@@ -1,0 +1,28 @@
+kind = "web"
+previewPath = "/"
+title = "VYRO Performance"
+description = "VYRO is a premium performance and outdoor lifestyle storefront, built around an accessible product catalogue and the brand promise: Better Beyond. Phase 1 establishes the brand experience and secure commerce foundation."
+version = "1.0.0"
+id = "artifacts/vyro"
+router = "path"
+
+[[services]]
+name = "web"
+paths = [ "/" ]
+localPort = 25551
+
+[services.development]
+run = "pnpm --filter @workspace/vyro run dev"
+
+[services.production]
+build = [ "pnpm", "--filter", "@workspace/vyro", "run", "build" ]
+serve = "static"
+publicDir = "artifacts/vyro/dist/public"
+
+[[services.production.rewrites]]
+from = "/*"
+to = "/index.html"
+
+[services.env]
+PORT = "25551"
+BASE_PATH = "/"

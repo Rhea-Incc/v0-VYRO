@@ -2,14 +2,18 @@ openapi: 3.1.0
 info:
   # Do not change the title, if the title changes, the import paths will be broken
   title: Api
-  version: 0.1.0
-  description: API specification
+  version: 1.0.0
+  description: VYRO storefront and catalogue operations
 servers:
   - url: /api
     description: Base API path
 tags:
   - name: health
     description: Health operations
+  - name: catalogue
+    description: Public product and category catalogue
+  - name: administration
+    description: Authenticated VYRO catalogue administration
 paths:
   /healthz:
     get:
@@ -24,6 +28,282 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/HealthStatus"
+  /categories:
+    get:
+      operationId: listCategories
+      tags: [catalogue]
+      summary: List active product categories
+      responses:
+        "200":
+          description: Active categories
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Category"
+  /products:
+    get:
+      operationId: listProducts
+      tags: [catalogue]
+      summary: Search and browse published products
+      parameters:
+        - in: query
+          name: q
+          schema: { type: string, maxLength: 100 }
+        - in: query
+          name: category
+          schema: { type: string, maxLength: 80 }
+        - in: query
+          name: featured
+          schema: { type: boolean }
+        - in: query
+          name: sort
+          schema:
+            type: string
+            enum: [featured, newest, price-asc, price-desc, name]
+            default: featured
+        - in: query
+          name: page
+          schema: { type: integer, minimum: 1, default: 1 }
+        - in: query
+          name: pageSize
+          schema: { type: integer, minimum: 1, maximum: 48, default: 12 }
+      responses:
+        "200":
+          description: Published products matching the query
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ProductPage"
+  /products/{slug}:
+    get:
+      operationId: getProductBySlug
+      tags: [catalogue]
+      summary: Get a published product
+      parameters:
+        - in: path
+          name: slug
+          required: true
+          schema: { type: string, minLength: 1, maxLength: 120 }
+      responses:
+        "200":
+          description: Product details
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Product"
+        "404":
+          description: Product not found
+  /admin/session:
+    get:
+      operationId: getAdminSession
+      tags: [administration]
+      summary: Check the signed-in user's VYRO admin role
+      responses:
+        "200":
+          description: Current account and trusted role assignment
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/AdminSession"
+        "401":
+          description: Sign-in required
+  /admin/summary:
+    get:
+      operationId: getAdminSummary
+      tags: [administration]
+      summary: Get catalogue operations summary
+      responses:
+        "200":
+          description: Catalogue counts and low-stock total
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/AdminSummary"
+        "401":
+          description: Sign-in required
+        "403":
+          description: Administrator role required
+  /admin/products:
+    get:
+      operationId: listAdminProducts
+      tags: [administration]
+      summary: List products for administration
+      parameters:
+        - in: query
+          name: q
+          schema: { type: string, maxLength: 100 }
+        - in: query
+          name: status
+          schema:
+            type: string
+            enum: [draft, published, archived]
+        - in: query
+          name: page
+          schema: { type: integer, minimum: 1, default: 1 }
+        - in: query
+          name: pageSize
+          schema: { type: integer, minimum: 1, maximum: 100, default: 25 }
+      responses:
+        "200":
+          description: All catalogue products, including drafts
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ProductPage"
+        "401":
+          description: Sign-in required
+        "403":
+          description: Administrator role required
+    post:
+      operationId: createAdminProduct
+      tags: [administration]
+      summary: Create a product and its initial variants
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ProductInput"
+      responses:
+        "201":
+          description: Created product
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Product"
+        "400":
+          description: Invalid product data
+        "401":
+          description: Sign-in required
+        "403":
+          description: Administrator role required
+  /admin/products/{id}:
+    get:
+      operationId: getAdminProduct
+      tags: [administration]
+      summary: Get a product for editing
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema: { type: string, format: uuid }
+      responses:
+        "200":
+          description: Product record
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Product"
+        "401":
+          description: Sign-in required
+        "403":
+          description: Administrator role required
+        "404":
+          description: Product not found
+    patch:
+      operationId: updateAdminProduct
+      tags: [administration]
+      summary: Update a product and its variants
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema: { type: string, format: uuid }
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ProductInput"
+      responses:
+        "200":
+          description: Updated product
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Product"
+        "400":
+          description: Invalid product data
+        "401":
+          description: Sign-in required
+        "403":
+          description: Administrator role required
+        "404":
+          description: Product not found
+  /admin/categories:
+    get:
+      operationId: listAdminCategories
+      tags: [administration]
+      summary: List categories for administration
+      responses:
+        "200":
+          description: All categories
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Category"
+        "401":
+          description: Sign-in required
+        "403":
+          description: Administrator role required
+    post:
+      operationId: createAdminCategory
+      tags: [administration]
+      summary: Create a category
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CategoryInput"
+      responses:
+        "201":
+          description: Created category
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Category"
+        "400":
+          description: Invalid category data
+        "401":
+          description: Sign-in required
+        "403":
+          description: Administrator role required
+  /admin/categories/{id}:
+    patch:
+      operationId: updateAdminCategory
+      tags: [administration]
+      summary: Update or deactivate a category
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema: { type: string, format: uuid }
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CategoryInput"
+      responses:
+        "200":
+          description: Updated category
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Category"
+        "400":
+          description: Invalid category data
+        "401":
+          description: Sign-in required
+        "403":
+          description: Administrator role required
+        "404":
+          description: Category not found
 components:
   schemas:
     HealthStatus:
@@ -33,4 +313,152 @@ components:
           type: string
       required:
         - status
+    Category:
+      type: object
+      required: [id, name, slug, description, parentId, imagePath, sortOrder, isActive, createdAt, updatedAt]
+      properties:
+        id: { type: string, format: uuid }
+        name: { type: string }
+        slug: { type: string }
+        description: { type: ["string", "null"] }
+        parentId: { type: ["string", "null"], format: uuid }
+        imagePath: { type: ["string", "null"] }
+        sortOrder: { type: integer }
+        isActive: { type: boolean }
+        createdAt: { type: string, format: date-time }
+        updatedAt: { type: string, format: date-time }
+    CategoryInput:
+      type: object
+      required: [name, slug, description, parentId, imagePath, sortOrder, isActive]
+      properties:
+        name: { type: string, minLength: 1, maxLength: 100 }
+        slug: { type: string, minLength: 1, maxLength: 100, pattern: "^[a-z0-9]+(?:-[a-z0-9]+)*$" }
+        description: { type: ["string", "null"], maxLength: 500 }
+        parentId: { type: ["string", "null"], format: uuid }
+        imagePath: { type: ["string", "null"], maxLength: 500 }
+        sortOrder: { type: integer, minimum: 0 }
+        isActive: { type: boolean }
+    ProductImage:
+      type: object
+      required: [id, storagePath, altText, sortOrder, isPrimary]
+      properties:
+        id: { type: string, format: uuid }
+        storagePath: { type: string }
+        altText: { type: string }
+        sortOrder: { type: integer }
+        isPrimary: { type: boolean }
+    ProductVariant:
+      type: object
+      required: [id, sku, name, options, priceMinor, currency, compareAtPriceMinor, status, availableStock]
+      properties:
+        id: { type: string, format: uuid }
+        sku: { type: string }
+        name: { type: string }
+        options:
+          type: object
+          additionalProperties: { type: string }
+        priceMinor: { type: integer, minimum: 0 }
+        currency: { type: string, pattern: "^[A-Z]{3}$" }
+        compareAtPriceMinor: { type: ["integer", "null"], minimum: 0 }
+        status: { type: string, enum: [active, inactive] }
+        availableStock: { type: integer, minimum: 0 }
+    Product:
+      type: object
+      required: [id, categoryId, category, name, slug, shortDescription, description, status, brand, featured, metadata, createdAt, updatedAt, publishedAt, variants, images]
+      properties:
+        id: { type: string, format: uuid }
+        categoryId: { type: ["string", "null"], format: uuid }
+        category:
+          anyOf:
+            - $ref: "#/components/schemas/Category"
+            - type: "null"
+        name: { type: string }
+        slug: { type: string }
+        shortDescription: { type: ["string", "null"] }
+        description: { type: ["string", "null"] }
+        status: { type: string, enum: [draft, published, archived] }
+        brand: { type: ["string", "null"] }
+        featured: { type: boolean }
+        metadata:
+          type: object
+          additionalProperties: true
+        createdAt: { type: string, format: date-time }
+        updatedAt: { type: string, format: date-time }
+        publishedAt: { type: ["string", "null"], format: date-time }
+        variants:
+          type: array
+          items: { $ref: "#/components/schemas/ProductVariant" }
+        images:
+          type: array
+          items: { $ref: "#/components/schemas/ProductImage" }
+    ProductPage:
+      type: object
+      required: [items, page, pageSize, total]
+      properties:
+        items:
+          type: array
+          items: { $ref: "#/components/schemas/Product" }
+        page: { type: integer }
+        pageSize: { type: integer }
+        total: { type: integer }
+    ProductImageInput:
+      type: object
+      required: [storagePath, altText, sortOrder, isPrimary]
+      properties:
+        storagePath: { type: string, minLength: 1, maxLength: 500 }
+        altText: { type: string, minLength: 1, maxLength: 250 }
+        sortOrder: { type: integer, minimum: 0 }
+        isPrimary: { type: boolean }
+    ProductVariantInput:
+      type: object
+      required: [sku, name, options, priceMinor, currency, compareAtPriceMinor, status, stockOnHand]
+      properties:
+        sku: { type: string, minLength: 1, maxLength: 80 }
+        name: { type: string, minLength: 1, maxLength: 120 }
+        options:
+          type: object
+          additionalProperties: { type: string }
+        priceMinor: { type: integer, minimum: 0 }
+        currency: { type: string, pattern: "^[A-Z]{3}$" }
+        compareAtPriceMinor: { type: ["integer", "null"], minimum: 0 }
+        status: { type: string, enum: [active, inactive] }
+        stockOnHand: { type: integer, minimum: 0 }
+    ProductInput:
+      type: object
+      required: [categoryId, name, slug, shortDescription, description, status, brand, featured, metadata, variants, images]
+      properties:
+        categoryId: { type: ["string", "null"], format: uuid }
+        name: { type: string, minLength: 1, maxLength: 160 }
+        slug: { type: string, minLength: 1, maxLength: 120, pattern: "^[a-z0-9]+(?:-[a-z0-9]+)*$" }
+        shortDescription: { type: ["string", "null"], maxLength: 300 }
+        description: { type: ["string", "null"], maxLength: 10000 }
+        status: { type: string, enum: [draft, published, archived] }
+        brand: { type: ["string", "null"], maxLength: 100 }
+        featured: { type: boolean }
+        metadata:
+          type: object
+          additionalProperties: true
+        variants:
+          type: array
+          minItems: 1
+          items: { $ref: "#/components/schemas/ProductVariantInput" }
+        images:
+          type: array
+          items: { $ref: "#/components/schemas/ProductImageInput" }
+    AdminSession:
+      type: object
+      required: [userId, role, isAdmin]
+      properties:
+        userId: { type: string }
+        role: { type: ["string", "null"], enum: [admin, staff, customer, null] }
+        isAdmin: { type: boolean }
+    AdminSummary:
+      type: object
+      required: [totalProducts, publishedProducts, draftProducts, categoryCount, lowStockVariants]
+      properties:
+        totalProducts: { type: integer }
+        publishedProducts: { type: integer }
+        draftProducts: { type: integer }
+        categoryCount: { type: integer }
+        lowStockVariants: { type: integer }
 

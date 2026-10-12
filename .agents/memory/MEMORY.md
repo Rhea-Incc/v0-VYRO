@@ -1,0 +1,2 @@
+- [VYRO supplied media](vyro-media-usage.md) — preserve the source wordmark and keep unverified cycling photos editorial-only.
+- [VYRO Vite dependency cache](vyro-vite-cache.md) — verify cached optimized React versions when the preview disagrees with pnpm and build output.

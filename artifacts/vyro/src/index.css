@@ -1,0 +1,567 @@
+@import url('https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700;800;900&family=DM+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap');
+@layer theme, base, clerk, components, utilities;
+@import 'tailwindcss';
+@import '@clerk/themes/shadcn.css';
+@import 'tw-animate-css';
+@plugin "@tailwindcss/typography";
+
+@custom-variant dark (&:is(.dark *));
+
+:root {
+  --vyro-charcoal: #171C20;
+  --vyro-elevated: #242B31;
+  --vyro-deep: #101417;
+  --vyro-orange: #FF6A00;
+  --vyro-orange-hover: #E85F00;
+  --vyro-off-white: #F5F3EC;
+  --vyro-white: #FFFFFF;
+  --vyro-cool-gray: #B9BAB8;
+  --vyro-text-primary: #20262B;
+  --vyro-text-secondary: #60686D;
+  --vyro-border-light: #DDDCD5;
+  --vyro-border-dark: #3A4248;
+  --vyro-success: #237A50;
+  --vyro-warning: #986000;
+  --vyro-error: #B42318;
+}
+
+@theme inline {
+  --color-background: hsl(var(--background));
+  --color-foreground: hsl(var(--foreground));
+  --color-border: hsl(var(--border));
+  --color-input: hsl(var(--input));
+  --color-ring: hsl(var(--ring));
+
+  --color-card: hsl(var(--card));
+  --color-card-foreground: hsl(var(--card-foreground));
+  --color-card-border: hsl(var(--card-border));
+
+  --color-popover: hsl(var(--popover));
+  --color-popover-foreground: hsl(var(--popover-foreground));
+  --color-popover-border: hsl(var(--popover-border));
+
+  --color-primary: hsl(var(--primary));
+  --color-primary-foreground: hsl(var(--primary-foreground));
+  --color-primary-border: var(--primary-border);
+
+  --color-secondary: hsl(var(--secondary));
+  --color-secondary-foreground: hsl(var(--secondary-foreground));
+  --color-secondary-border: var(--secondary-border);
+
+  --color-muted: hsl(var(--muted));
+  --color-muted-foreground: hsl(var(--muted-foreground));
+  --color-muted-border: var(--muted-border);
+
+  --color-accent: hsl(var(--accent));
+  --color-accent-foreground: hsl(var(--accent-foreground));
+  --color-accent-border: var(--accent-border);
+
+  --color-destructive: hsl(var(--destructive));
+  --color-destructive-foreground: hsl(var(--destructive-foreground));
+  --color-destructive-border: var(--destructive-border);
+
+  --color-chart-1: hsl(var(--chart-1));
+  --color-chart-2: hsl(var(--chart-2));
+  --color-chart-3: hsl(var(--chart-3));
+  --color-chart-4: hsl(var(--chart-4));
+  --color-chart-5: hsl(var(--chart-5));
+
+  --color-sidebar: hsl(var(--sidebar));
+  --color-sidebar-foreground: hsl(var(--sidebar-foreground));
+  --color-sidebar-border: hsl(var(--sidebar-border));
+  --color-sidebar-primary: hsl(var(--sidebar-primary));
+  --color-sidebar-primary-foreground: hsl(var(--sidebar-primary-foreground));
+  --color-sidebar-primary-border: var(--sidebar-primary-border);
+  --color-sidebar-accent: hsl(var(--sidebar-accent));
+  --color-sidebar-accent-foreground: hsl(var(--sidebar-accent-foreground));
+  --color-sidebar-accent-border: var(--sidebar-accent-border);
+  --color-sidebar-ring: hsl(var(--sidebar-ring));
+
+  --font-sans: var(--app-font-sans);
+  --font-serif: var(--app-font-serif);
+  --font-mono: var(--app-font-mono);
+
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+}
+
+/* LIGHT MODE */
+:root {
+  --button-outline: rgba(0, 0, 0, 0.1);
+  --badge-outline: rgba(0, 0, 0, 0.05);
+
+  /* Automatic computation of border around primary / danger buttons */
+  --opaque-button-border-intensity: -8; /* In terms of percentages */
+
+  /* Backgrounds applied on top of other backgrounds when hovered/active */
+  --elevate-1: rgba(0, 0, 0, 0.03);
+  --elevate-2: rgba(0, 0, 0, 0.08);
+
+  --background: 42 26% 96%;
+  --foreground: 210 19% 12%;
+  --border: 35 12% 82%;
+  --card: 42 24% 98%;
+  --card-foreground: 210 19% 12%;
+  --card-border: 35 12% 82%;
+  --sidebar: 210 19% 12%;
+  --sidebar-foreground: 42 26% 96%;
+  --sidebar-border: 210 10% 28%;
+  --sidebar-primary: 18 100% 52%;
+  --sidebar-primary-foreground: 0 0% 100%;
+  --sidebar-accent: 210 15% 21%;
+  --sidebar-accent-foreground: 42 26% 96%;
+  --sidebar-ring: 18 100% 52%;
+  --popover: 42 24% 98%;
+  --popover-foreground: 210 19% 12%;
+  --popover-border: 35 12% 82%;
+  --primary: 18 100% 52%;
+  --primary-foreground: 0 0% 100%;
+  --secondary: 210 13% 89%;
+  --secondary-foreground: 210 19% 12%;
+  --muted: 36 18% 91%;
+  --muted-foreground: 210 8% 43%;
+  --accent: 18 100% 52%;
+  --accent-foreground: 0 0% 100%;
+  --destructive: 0 67% 48%;
+  --destructive-foreground: 0 0% 100%;
+  --input: 35 12% 78%;
+  --ring: 18 100% 52%;
+  --chart-1: 18 100% 52%;
+  --chart-2: 210 19% 12%;
+  --chart-3: 42 26% 70%;
+  --chart-4: 165 24% 42%;
+  --chart-5: 32 54% 56%;
+  --app-font-sans: 'DM Sans', sans-serif;
+  --app-font-serif: 'Barlow Condensed', sans-serif;
+  --app-font-mono: 'IBM Plex Mono', monospace;
+  --radius: 0.5rem; /* 8px */
+  --shadow-2xs: 0px 2px 0px 0px hsl(202.8169 89.1213% 53.1373% / 0); /*replace with H S L */
+  --shadow-xs: 0px 2px 0px 0px hsl(202.8169 89.1213% 53.1373% / 0); /*replace with H S L */
+  --shadow-sm:
+    0px 2px 0px 0px hsl(202.8169 89.1213% 53.1373% / 0),
+    0px 1px 2px -1px hsl(202.8169 89.1213% 53.1373% / 0);
+  --shadow:
+    0px 2px 0px 0px hsl(202.8169 89.1213% 53.1373% / 0),
+    0px 1px 2px -1px hsl(202.8169 89.1213% 53.1373% / 0);
+  --shadow-md:
+    0px 2px 0px 0px hsl(202.8169 89.1213% 53.1373% / 0),
+    0px 2px 4px -1px hsl(202.8169 89.1213% 53.1373% / 0);
+  --shadow-lg:
+    0px 2px 0px 0px hsl(202.8169 89.1213% 53.1373% / 0),
+    0px 4px 6px -1px hsl(202.8169 89.1213% 53.1373% / 0);
+  --shadow-xl:
+    0px 2px 0px 0px hsl(202.8169 89.1213% 53.1373% / 0),
+    0px 8px 10px -1px hsl(202.8169 89.1213% 53.1373% / 0);
+  --shadow-2xl: 0px 2px 0px 0px hsl(202.8169 89.1213% 53.1373% / 0);
+  --tracking-normal: 0em;
+  --spacing: 0.25rem;
+
+  /* Automatically computed borders - intensity can be controlled by the user by the --opaque-button-border-intensity setting */
+
+  /* Fallback for older browsers */
+  --sidebar-primary-border: hsl(var(--sidebar-primary));
+  --sidebar-primary-border: hsl(
+    from hsl(var(--sidebar-primary)) h s
+      calc(l + var(--opaque-button-border-intensity)) / alpha
+  );
+
+  /* Fallback for older browsers */
+  --sidebar-accent-border: hsl(var(--sidebar-accent));
+  --sidebar-accent-border: hsl(
+    from hsl(var(--sidebar-accent)) h s
+      calc(l + var(--opaque-button-border-intensity)) / alpha
+  );
+
+  /* Fallback for older browsers */
+  --primary-border: hsl(var(--primary));
+  --primary-border: hsl(
+    from hsl(var(--primary)) h s
+      calc(l + var(--opaque-button-border-intensity)) / alpha
+  );
+
+  /* Fallback for older browsers */
+  --secondary-border: hsl(var(--secondary));
+  --secondary-border: hsl(
+    from hsl(var(--secondary)) h s
+      calc(l + var(--opaque-button-border-intensity)) / alpha
+  );
+
+  /* Fallback for older browsers */
+  --muted-border: hsl(var(--muted));
+  --muted-border: hsl(
+    from hsl(var(--muted)) h s calc(l + var(--opaque-button-border-intensity)) /
+      alpha
+  );
+
+  /* Fallback for older browsers */
+  --accent-border: hsl(var(--accent));
+  --accent-border: hsl(
+    from hsl(var(--accent)) h s
+      calc(l + var(--opaque-button-border-intensity)) / alpha
+  );
+
+  /* Fallback for older browsers */
+  --destructive-border: hsl(var(--destructive));
+  --destructive-border: hsl(
+    from hsl(var(--destructive)) h s
+      calc(l + var(--opaque-button-border-intensity)) / alpha
+  );
+}
+
+.dark {
+  --button-outline: rgba(255, 255, 255, 0.1);
+  --badge-outline: rgba(255, 255, 255, 0.05);
+
+  --opaque-button-border-intensity: 9; /* In terms of percentages */
+
+  /* Backgrounds applied on top of other backgrounds when hovered/active */
+  --elevate-1: rgba(255, 255, 255, 0.04);
+  --elevate-2: rgba(255, 255, 255, 0.09);
+
+  --background: 210 19% 12%;
+  --foreground: 42 26% 96%;
+  --border: 210 10% 29%;
+  --card: 210 16% 16%;
+  --card-foreground: 42 26% 96%;
+  --card-border: 210 10% 29%;
+  --sidebar: 210 20% 9%;
+  --sidebar-foreground: 42 26% 96%;
+  --sidebar-border: 210 10% 25%;
+  --sidebar-primary: 18 100% 52%;
+  --sidebar-primary-foreground: 0 0% 100%;
+  --sidebar-accent: 210 15% 18%;
+  --sidebar-accent-foreground: 42 26% 96%;
+  --sidebar-ring: 18 100% 52%;
+  --popover: 210 16% 16%;
+  --popover-foreground: 42 26% 96%;
+  --popover-border: 210 10% 29%;
+  --primary: 18 100% 52%;
+  --primary-foreground: 0 0% 100%;
+  --secondary: 210 12% 25%;
+  --secondary-foreground: 42 26% 96%;
+  --muted: 210 13% 21%;
+  --muted-foreground: 210 8% 68%;
+  --accent: 18 100% 52%;
+  --accent-foreground: 0 0% 100%;
+  --destructive: 0 67% 48%;
+  --destructive-foreground: 0 0% 100%;
+  --input: 210 10% 29%;
+  --ring: 18 100% 52%;
+  --chart-1: 18 100% 52%;
+  --chart-2: 42 26% 80%;
+  --chart-3: 210 8% 60%;
+  --chart-4: 165 24% 52%;
+  --chart-5: 32 54% 60%;
+
+  --shadow-2xs: 0px 2px 0px 0px hsl(202.8169 89.1213% 53.1373% / 0);
+  --shadow-xs: 0px 2px 0px 0px hsl(202.8169 89.1213% 53.1373% / 0);
+  --shadow-sm:
+    0px 2px 0px 0px hsl(202.8169 89.1213% 53.1373% / 0),
+    0px 1px 2px -1px hsl(202.8169 89.1213% 53.1373% / 0);
+  --shadow:
+    0px 2px 0px 0px hsl(202.8169 89.1213% 53.1373% / 0),
+    0px 1px 2px -1px hsl(202.8169 89.1213% 53.1373% / 0);
+  --shadow-md:
+    0px 2px 0px 0px hsl(202.8169 89.1213% 53.1373% / 0),
+    0px 2px 4px -1px hsl(202.8169 89.1213% 53.1373% / 0);
+  --shadow-lg:
+    0px 2px 0px 0px hsl(202.8169 89.1213% 53.1373% / 0),
+    0px 4px 6px -1px hsl(202.8169 89.1213% 53.1373% / 0);
+  --shadow-xl:
+    0px 2px 0px 0px hsl(202.8169 89.1213% 53.1373% / 0),
+    0px 8px 10px -1px hsl(202.8169 89.1213% 53.1373% / 0);
+  --shadow-2xl: 0px 2px 0px 0px hsl(202.8169 89.1213% 53.1373% / 0);
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply font-sans antialiased bg-background text-foreground;
+  }
+}
+
+.site-shell{min-height:100dvh;background:var(--vyro-off-white);color:var(--vyro-text-primary)}
+.skeleton-line{height:3px;max-width:180px;margin:0 auto 18px;background:#f45119;transform-origin:left;animation:skeleton-pulse 1.2s ease-in-out infinite alternate}
+@keyframes skeleton-pulse{from{opacity:.35;transform:scaleX(.45)}to{opacity:1;transform:scaleX(1)}}
+body{background:var(--vyro-off-white);color:var(--vyro-text-primary)}
+:focus-visible{outline-color:var(--vyro-orange)}
+.announcement,.admin-side{background:var(--vyro-charcoal)}
+.brand-light{width:max-content;padding:6px;background:var(--vyro-off-white)}
+.brand-light img{width:122px}
+.product-placeholder{position:absolute;inset:0;display:grid;place-items:center;overflow:hidden;background:linear-gradient(145deg,var(--vyro-elevated),var(--vyro-deep));color:var(--vyro-off-white)}
+.product-placeholder:before{content:"";position:absolute;width:64%;aspect-ratio:1;border:1px solid var(--vyro-border-dark);transform:rotate(45deg)}
+.product-placeholder>span,.gallery-placeholder>span{z-index:1;font:10px 'IBM Plex Mono',monospace;letter-spacing:.14em}
+.gallery-placeholder{display:grid;place-items:center;background:linear-gradient(145deg,var(--vyro-elevated),var(--vyro-deep));color:var(--vyro-off-white)}
+.variant-picker{margin:24px 0}
+.variant-picker label{display:block;margin-bottom:8px}
+.variant-picker select{width:100%;padding:12px;border:1px solid var(--vyro-border-light);background:var(--vyro-off-white);color:var(--vyro-text-primary)}
+.field small{display:block;margin-top:6px;color:var(--vyro-text-secondary);font-size:11px;line-height:1.5}
+input:disabled{cursor:not-allowed;opacity:.8}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;font-family:'DM Sans',sans-serif;background:var(--vyro-off-white);color:var(--vyro-text-primary)}
+button,input,select,textarea{font:inherit}
+button,a{ -webkit-tap-highlight-color:transparent}
+a{color:inherit;text-decoration:none}
+button{cursor:pointer}
+:focus-visible{outline:3px solid #fa571b;outline-offset:3px}
+.mono{font-family:'IBM Plex Mono',monospace}
+.display{font-family:'Barlow Condensed',sans-serif;text-transform:uppercase;font-weight:800;letter-spacing:-.035em}
+.announcement{height:30px;background:var(--vyro-charcoal);color:var(--vyro-off-white);display:flex;align-items:center;justify-content:center;font:10px 'IBM Plex Mono',monospace;letter-spacing:.16em}
+.topbar{height:76px;display:flex;align-items:center;justify-content:space-between;padding:0 5vw;border-bottom:1px solid var(--vyro-border-light);background:var(--vyro-off-white);position:relative;z-index:10}
+.brand{display:flex;align-items:center;width:130px}.brand img{width:122px;display:block}
+.navlinks{display:flex;align-items:center;gap:38px;font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase}
+.navlinks a{padding:12px 0;position:relative}.navlinks a:after{content:'';position:absolute;bottom:5px;left:0;width:0;height:2px;background:#f45119;transition:width .22s}.navlinks a:hover:after{width:100%}
+.navactions{display:flex;align-items:center;gap:22px;font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase}
+.iconlink{border:0;background:none;display:flex;align-items:center;gap:8px;color:var(--vyro-text-primary);padding:8px}
+.mobile-menu{display:none}
+.hero{min-height:690px;background:var(--vyro-deep);position:relative;overflow:hidden;color:var(--vyro-off-white);display:flex;align-items:flex-end}
+.hero:before{content:'';position:absolute;inset:0;background:linear-gradient(90deg,rgba(6,10,12,.79),rgba(6,10,12,.12) 75%),linear-gradient(0deg,rgba(5,8,10,.55),transparent 48%),var(--hero-photo) center 45%/cover;filter:saturate(.2)}
+.hero-inner{position:relative;z-index:1;padding:0 9vw 78px;max-width:1100px}
+.eyebrow{font:10px 'IBM Plex Mono',monospace;letter-spacing:.2em;text-transform:uppercase;color:#fa5a1d}
+.hero h1{font-size:clamp(72px,12vw,166px);line-height:.78;margin:24px 0 26px;max-width:860px}
+.hero p{font-size:14px;line-height:1.7;max-width:390px;color:#d8d8d2;margin-bottom:30px}
+.hero-mark{position:absolute;top:44px;right:5vw;font:10px 'IBM Plex Mono',monospace;letter-spacing:.18em;writing-mode:vertical-rl;color:#d6d4cd}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:14px;border:1px solid var(--vyro-charcoal);background:var(--vyro-charcoal);color:var(--vyro-off-white);padding:15px 22px;font:700 10px 'IBM Plex Mono',monospace;letter-spacing:.12em;text-transform:uppercase;transition:.2s}
+.btn:hover{background:var(--vyro-orange-hover);border-color:var(--vyro-orange-hover);color:var(--vyro-white);transform:translateY(-2px)}
+.btn-outline{background:transparent;color:inherit;border-color:currentColor}
+.btn-orange{background:var(--vyro-orange);border-color:var(--vyro-orange)}
+.section{padding:100px 8vw}
+.section-head{display:flex;justify-content:space-between;align-items:end;gap:30px;margin-bottom:38px}
+.section-head h2{font-size:clamp(42px,6vw,76px);line-height:.85;margin:12px 0 0}
+.section-head p{font-size:13px;color:#646b6b;max-width:330px;line-height:1.6}
+.home-products{background:#f4f1e9}
+.product-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}
+.product-card{min-width:0}
+.product-image{aspect-ratio: .83;background:var(--vyro-elevated);position:relative;overflow:hidden;display:block}
+.product-image img{width:100%;height:100%;object-fit:cover;transition:transform .6s cubic-bezier(.2,.7,.2,1);filter:grayscale(.7)}
+.product-card:hover .product-image img{transform:scale(1.04)}
+.product-image .tag{position:absolute;left:14px;top:14px;background:var(--vyro-off-white);padding:8px 10px;font:9px 'IBM Plex Mono',monospace;letter-spacing:.1em;text-transform:uppercase}
+.product-info{display:flex;justify-content:space-between;align-items:start;padding:16px 1px}
+.product-info h3{font:700 19px 'Barlow Condensed',sans-serif;text-transform:uppercase;letter-spacing:.01em;margin:0 0 5px}
+.product-info p{font-size:11px;color:#6d7270;margin:0}
+.product-price{font:12px 'IBM Plex Mono',monospace}
+.story-band{background:#182026;color:#f3f0e8;display:grid;grid-template-columns:1fr 1fr;min-height:530px}
+.story-photo{min-height:440px;background:var(--story-photo) center/cover no-repeat;filter:grayscale(.4)}
+.story-copy{display:flex;flex-direction:column;justify-content:center;padding:70px 11%}
+.story-copy h2{font-size:clamp(48px,6vw,78px);line-height:.83;margin:20px 0}
+.story-copy p{max-width:390px;color:#c2c6c5;font-size:13px;line-height:1.8;margin:0 0 28px}
+.manifesto{padding:115px 8vw;background:#f45119;color:#fff}
+.manifesto h2{font-size:clamp(55px,11vw,140px);line-height:.78;margin:20px 0;max-width:1100px}
+.manifesto-foot{display:flex;justify-content:space-between;align-items:end;font:10px 'IBM Plex Mono',monospace;letter-spacing:.15em;text-transform:uppercase}
+.journal-grid{display:grid;grid-template-columns:1.2fr .8fr;gap:24px}
+.journal-card{position:relative;min-height:340px;background:#182026;color:white;display:flex;align-items:end;padding:28px;overflow:hidden}
+.journal-card:before{content:'';position:absolute;inset:0;background:linear-gradient(0deg,rgba(8,10,12,.76),transparent 70%),var(--journal-photo) center/cover;filter:grayscale(.8);transition:transform .5s}
+.journal-card:hover:before{transform:scale(1.04)}
+.journal-card>div{position:relative;z-index:1}.journal-card h3{font:700 36px 'Barlow Condensed',sans-serif;text-transform:uppercase;margin:10px 0}
+.newsletter{background:#e7e4dc;padding:62px 8vw;display:flex;justify-content:space-between;align-items:center;gap:30px}
+.newsletter h2{font-size:44px;line-height:.9;margin:10px 0}
+.newsletter form{display:flex;gap:0;width:min(460px,100%);border-bottom:1px solid #182026}
+.newsletter input{border:0;background:transparent;padding:15px 4px;flex:1;min-width:0}
+.newsletter button{border:0;background:transparent;padding:0 8px;font:700 10px 'IBM Plex Mono',monospace;letter-spacing:.1em}
+.footer{background:var(--vyro-charcoal);color:var(--vyro-off-white);padding:54px 8vw 28px}
+.footer-main{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:35px;padding-bottom:54px}
+.footer-logo{width:145px}.brand-light{background:var(--vyro-off-white);padding:5px}
+.footer h4{font:10px 'IBM Plex Mono',monospace;letter-spacing:.14em;color:var(--vyro-orange);margin:0 0 18px}
+.footer a,.footer p{display:block;color:#d0d1ca;font-size:12px;line-height:2}
+.footer-bottom{border-top:1px solid #41474a;padding-top:22px;display:flex;justify-content:space-between;font:9px 'IBM Plex Mono',monospace;letter-spacing:.12em;color:#aeb3b0}
+.page-heading{background:#182026;color:#f4f1e9;padding:74px 8vw 65px}
+.page-heading h1{font-size:clamp(58px,9vw,112px);line-height:.82;margin:16px 0}
+.page-heading p{max-width:500px;color:#c6c9c7;font-size:13px;line-height:1.7}
+.catalogue{padding:42px 8vw 100px}
+.catalogue-bar{display:flex;justify-content:space-between;align-items:center;padding:12px 0 26px;border-bottom:1px solid #d2cec4;margin-bottom:26px;font:10px 'IBM Plex Mono',monospace;letter-spacing:.08em;text-transform:uppercase}
+.filters{display:flex;gap:10px;flex-wrap:wrap}
+.filter{border:1px solid #c9c5bb;background:transparent;padding:10px 13px;font:10px 'IBM Plex Mono',monospace;text-transform:uppercase;letter-spacing:.06em}
+.filter.active{background:var(--vyro-charcoal);color:var(--vyro-white);border-color:var(--vyro-charcoal)}
+.catalogue .product-grid{grid-template-columns:repeat(4,minmax(0,1fr));gap:24px 16px}
+.catalogue .product-image{aspect-ratio:.79}
+.empty-state,.state-panel{padding:70px 20px;text-align:center;border:1px solid #d8d3c7;background:#eeebe3}
+.empty-state h2,.state-panel h2{font:700 34px 'Barlow Condensed',sans-serif;text-transform:uppercase}
+.state-panel{margin:70px auto;max-width:720px}
+.state-panel p{font-size:13px;color:#687171;line-height:1.7}
+.product-detail{padding:55px 8vw 100px;display:grid;grid-template-columns:1.2fr .8fr;gap:70px}
+.gallery-main{width:100%;aspect-ratio:.95;object-fit:cover;background:var(--vyro-elevated);filter:grayscale(.6)}
+.gallery-thumbs{display:flex;gap:10px;margin-top:12px}
+.gallery-thumbs button{padding:0;border:1px solid transparent;background:none;width:76px;height:78px}
+.gallery-thumbs button.active{border-color:#f45119}.gallery-thumbs img{width:100%;height:100%;object-fit:cover}
+.detail-copy{padding-top:20px}
+.detail-copy h1{font-size:clamp(48px,6vw,76px);line-height:.85;margin:15px 0}
+.detail-price{font:16px 'IBM Plex Mono',monospace;margin:22px 0}
+.detail-copy p{font-size:13px;line-height:1.8;color:#5e6565}
+.phase-note{margin-top:32px;padding:20px;border-left:3px solid #f45119;background:#e9e5dc;font-size:12px;line-height:1.7}
+.spec-line{padding:17px 0;border-bottom:1px solid #d1cdc3;display:flex;justify-content:space-between;font:10px 'IBM Plex Mono',monospace;text-transform:uppercase}
+.text-page{max-width:900px;margin:auto;padding:70px 8vw 110px;min-height:400px}
+.text-page h1{font-size:clamp(52px,8vw,90px);line-height:.82;margin:15px 0 28px}
+.text-page h2{font:700 28px 'Barlow Condensed',sans-serif;text-transform:uppercase;margin-top:42px}
+.text-page p{font-size:14px;line-height:1.9;color:#4e5758;max-width:720px}
+.search-row{display:flex;max-width:700px;border-bottom:1px solid #182026;margin:30px 0}
+.search-row input{flex:1;border:0;background:transparent;padding:16px 0;font-size:16px;min-width:0}
+.search-row button{border:0;background:transparent}
+.admin-layout{display:grid;grid-template-columns:235px 1fr;min-height:calc(100dvh - 106px)}
+.admin-side{background:var(--vyro-charcoal);color:var(--vyro-off-white);padding:35px 20px;display:flex;flex-direction:column;gap:8px}
+.admin-side .eyebrow{padding:12px 12px 18px}
+.admin-side a{padding:12px;border-left:2px solid transparent;font-size:12px;color:#d0d1ca}
+.admin-side a.active,.admin-side a:hover{border-color:var(--vyro-orange);background:var(--vyro-elevated);color:var(--vyro-white)}
+.admin-main{padding:48px min(6vw,80px);min-width:0}
+.admin-title{display:flex;justify-content:space-between;align-items:end;gap:20px;margin-bottom:32px}
+.admin-title h1{font-size:56px;line-height:.86;margin:10px 0}
+.admin-title p{color:#687171;font-size:12px}
+.metric-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:35px}
+.metric{border:1px solid #d8d3c8;background:#eeebe3;padding:20px}
+.metric span{font:9px 'IBM Plex Mono',monospace;text-transform:uppercase;letter-spacing:.1em;color:#676e6e}
+.metric strong{display:block;font:700 40px 'Barlow Condensed',sans-serif;margin-top:8px}
+.admin-table-wrap{overflow:auto;border:1px solid #d8d3c8;background:#f7f5ef}
+.admin-table{border-collapse:collapse;width:100%;min-width:700px;text-align:left}
+.admin-table th{font:9px 'IBM Plex Mono',monospace;letter-spacing:.09em;text-transform:uppercase;color:#6b7270;padding:15px;border-bottom:1px solid #d8d3c8}
+.admin-table td{padding:14px 15px;border-bottom:1px solid #e2ded5;font-size:12px}
+.admin-table tr:last-child td{border:0}
+.status-pill{display:inline-block;padding:5px 8px;background:#dedbd2;font:9px 'IBM Plex Mono',monospace;text-transform:uppercase}
+.status-pill.published{background:#d7e3dc;color:#315b48}.status-pill.draft{background:#f1e0cd;color:#805123}
+.admin-form{max-width:900px}.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.field{display:flex;flex-direction:column;gap:8px;margin-bottom:18px}.field.full{grid-column:1/-1}
+.field label{font:10px 'IBM Plex Mono',monospace;letter-spacing:.1em;text-transform:uppercase}
+.field input,.field select,.field textarea{border:1px solid #d2cec4;background:#f9f7f1;padding:13px;color:#182026}
+.field textarea{min-height:120px;resize:vertical}
+.check-field{display:flex;align-items:center;gap:10px;font-size:12px;margin:10px 0 24px}
+.admin-actions{display:flex;gap:12px;align-items:center;margin-top:20px}
+.notice{padding:15px 18px;background:#e6eee8;color:#315b48;font-size:12px;margin:16px 0}
+.auth-backdrop{min-height:100dvh;background:#182026;display:grid;grid-template-columns:1fr 1fr;color:#f4f1e9}
+.auth-art{background:linear-gradient(0deg,rgba(14,18,20,.65),rgba(14,18,20,.05)),var(--auth-photo) center/cover;display:flex;align-items:end;padding:7vw}
+.auth-art h1{font-size:90px;line-height:.8;margin:0}
+.auth-form{display:flex;align-items:center;justify-content:center;padding:35px}
+.auth-form:before{content:'BETTER BEYOND';position:absolute;top:35px;right:5vw;font:10px 'IBM Plex Mono',monospace;letter-spacing:.2em;color:#f45119}
+.story-page{display:grid;grid-template-columns:1fr 1fr;min-height:560px}
+.story-page img{width:100%;height:100%;object-fit:cover;filter:grayscale(.65)}
+.story-page-copy{padding:80px 10%;align-self:center}
+.story-page-copy h1{font-size:clamp(60px,8vw,100px);line-height:.8;margin:20px 0}
+.notes-list{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.note-card{border:1px solid #d5d1c8;background:#eeebe3}.note-card img{width:100%;height:250px;object-fit:cover;filter:grayscale(.55)}
+.note-card div{padding:22px}.note-card h2{font:700 28px 'Barlow Condensed',sans-serif;text-transform:uppercase;margin:8px 0}
+.not-found{min-height:55vh;display:grid;place-items:center;text-align:center}
+@media(max-width:900px){.navlinks{gap:18px}.navactions{gap:8px}.catalogue .product-grid{grid-template-columns:repeat(3,1fr)}.metric-grid{grid-template-columns:repeat(2,1fr)}.footer-main{grid-template-columns:1fr 1fr}.product-detail{gap:36px}.section{padding:75px 6vw}}
+.navlinks.open{display:flex}
+@media(max-width:680px){.topbar{height:65px;padding:0 5vw}.brand{width:110px}.brand img{width:105px}.mobile-menu{display:flex;background:none;border:0;padding:8px}.navlinks{display:none;position:absolute;left:0;right:0;top:65px;background:#f4f1e9;padding:15px 6vw 23px;flex-direction:column;align-items:flex-start;border-bottom:1px solid #d9d5ca}.navlinks.open{display:flex}.navactions .search-label{display:none}.hero{min-height:640px}.hero-inner{padding:0 7vw 54px}.hero h1{font-size:clamp(70px,19vw,110px)}.section{padding:66px 6vw}.section-head{align-items:start;flex-direction:column}.product-grid,.catalogue .product-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:20px 12px}.product-info{gap:8px}.product-info h3{font-size:17px}.story-band,.story-page{grid-template-columns:1fr}.story-photo{min-height:340px}.story-copy{padding:55px 8vw}.manifesto{padding:80px 7vw}.manifesto-foot{gap:15px;align-items:start;flex-direction:column}.journal-grid,.notes-list{grid-template-columns:1fr}.journal-card{min-height:300px}.newsletter{align-items:start;flex-direction:column;padding:48px 7vw}.newsletter form{width:100%}.footer{padding:45px 7vw 24px}.footer-main{grid-template-columns:1fr 1fr;gap:28px}.footer-main>div:first-child{grid-column:1/-1}.footer-bottom{flex-direction:column;gap:12px}.page-heading{padding:60px 7vw}.catalogue{padding:30px 6vw 70px}.catalogue-bar{align-items:start;flex-direction:column;gap:16px}.product-detail{grid-template-columns:1fr;padding:30px 6vw 70px;gap:28px}.detail-copy{padding:0}.admin-layout{grid-template-columns:1fr}.admin-side{padding:12px 5vw;flex-direction:row;overflow:auto}.admin-side .eyebrow{display:none}.admin-side a{white-space:nowrap;padding:10px}.admin-main{padding:34px 5vw}.admin-title{align-items:start;flex-direction:column}.admin-title h1{font-size:46px}.metric-grid{gap:8px}.metric{padding:14px}.metric strong{font-size:33px}.form-grid{grid-template-columns:1fr}.field.full{grid-column:auto}.auth-backdrop{grid-template-columns:1fr}.auth-art{min-height:210px;padding:8vw}.auth-art h1{font-size:60px}.auth-form{padding:45px 6vw}.story-page-copy{padding:60px 8vw}}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{scroll-behavior:auto!important;transition:none!important;animation:none!important}}
+
+/**
+ * Using the elevate system.
+ * Automatic contrast adjustment.
+ *
+ * <element className="hover-elevate" />
+ * <element className="active-elevate-2" />
+ *
+ * // Using the tailwind utility when a data attribute is "on"
+ * <element className="toggle-elevate data-[state=on]:toggle-elevated" />
+ * // Or manually controlling the toggle state
+ * <element className="toggle-elevate toggle-elevated" />
+ *
+ * Elevation systems have to handle many states.
+ * - not-hovered, vs. hovered vs. active  (three mutually exclusive states)
+ * - toggled or not
+ * - focused or not (this is not handled with these utilities)
+ *
+ * Even without handling focused or not, this is six possible combinations that
+ * need to be distinguished from eachother visually.
+ */
+@layer utilities {
+  /* Hide ugly search cancel button in Chrome until we can style it properly */
+  input[type='search']::-webkit-search-cancel-button {
+    @apply hidden;
+  }
+
+  /* Placeholder styling for contentEditable div */
+  [contenteditable][data-placeholder]:empty::before {
+    content: attr(data-placeholder);
+    color: hsl(var(--muted-foreground));
+    pointer-events: none;
+  }
+
+  /* .no-default-hover-elevate/no-default-active-elevate is an escape hatch so consumers of
+   * buttons/badges can remove the automatic brightness adjustment on interactions
+   * and program their own. */
+  .no-default-hover-elevate {
+  }
+
+  .no-default-active-elevate {
+  }
+
+  /**
+   * Toggleable backgrounds go behind the content. Hoverable/active goes on top.
+   * This way they can stack/compound. Both will overlap the parent's borders!
+   * So borders will be automatically adjusted both on toggle, and hover/active,
+   * and they will be compounded.
+   */
+  .toggle-elevate::before,
+  .toggle-elevate-2::before {
+    content: '';
+    pointer-events: none;
+    position: absolute;
+    inset: 0px;
+    /*border-radius: inherit;   match rounded corners */
+    border-radius: inherit;
+    z-index: -1;
+    /* sits behind content but above backdrop */
+  }
+
+  .toggle-elevate.toggle-elevated::before {
+    background-color: var(--elevate-2);
+  }
+
+  /* If there's a 1px border, adjust the inset so that it covers that parent's border */
+  .border.toggle-elevate::before {
+    inset: -1px;
+  }
+
+  /* Does not work on elements with overflow:hidden! */
+  .hover-elevate:not(.no-default-hover-elevate),
+  .active-elevate:not(.no-default-active-elevate),
+  .hover-elevate-2:not(.no-default-hover-elevate),
+  .active-elevate-2:not(.no-default-active-elevate) {
+    position: relative;
+    z-index: 0;
+  }
+
+  .hover-elevate:not(.no-default-hover-elevate)::after,
+  .active-elevate:not(.no-default-active-elevate)::after,
+  .hover-elevate-2:not(.no-default-hover-elevate)::after,
+  .active-elevate-2:not(.no-default-active-elevate)::after {
+    content: '';
+    pointer-events: none;
+    position: absolute;
+    inset: 0px;
+    /*border-radius: inherit;   match rounded corners */
+    border-radius: inherit;
+    z-index: 999;
+    /* sits in front of content */
+  }
+
+  .hover-elevate:hover:not(.no-default-hover-elevate)::after,
+  .active-elevate:active:not(.no-default-active-elevate)::after {
+    background-color: var(--elevate-1);
+  }
+
+  .hover-elevate-2:hover:not(.no-default-hover-elevate)::after,
+  .active-elevate-2:active:not(.no-default-active-elevate)::after {
+    background-color: var(--elevate-2);
+  }
+
+  /* If there's a 1px border, adjust the inset so that it covers that parent's border */
+  .border.hover-elevate:not(.no-hover-interaction-elevate)::after,
+  .border.active-elevate:not(.no-active-interaction-elevate)::after,
+  .border.hover-elevate-2:not(.no-hover-interaction-elevate)::after,
+  .border.active-elevate-2:not(.no-active-interaction-elevate)::after,
+  .border.hover-elevate:not(.no-hover-interaction-elevate)::after {
+    inset: -1px;
+  }
+}
+
+body,.site-shell{background:var(--vyro-off-white);color:var(--vyro-text-primary)}
+.gallery-main.gallery-placeholder{display:grid;place-items:center;background:linear-gradient(145deg,var(--vyro-elevated),var(--vyro-deep));color:var(--vyro-off-white);filter:none}
+.brand-light{width:max-content;background:var(--vyro-off-white)}
+.brand-light img{width:122px}
+.product-placeholder:focus-visible,.gallery-placeholder:focus-visible{outline:2px solid var(--vyro-orange);outline-offset:3px}
