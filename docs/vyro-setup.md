@@ -16,7 +16,21 @@ pnpm --filter @workspace/db run push
 
 This command is for development only. Before changing a production database, prepare and review a migration and apply it only to the intended production environment. Do not use the development push command as a production migration.
 
-At API startup, the service idempotently creates the generic default inventory location if it is missing. It does not create products or categories.
+At API startup, or before the first API request in a serverless deployment, the service idempotently creates the generic default inventory location if it is missing. It does not create products or categories.
+
+## Vercel deployment
+
+Create the Vercel project from the repository root so it can read `vercel.json` and the pnpm workspace. The configuration publishes VYRO at `/` and the API at `/api/*`; the mockup sandbox remains an internal service.
+
+Set these production environment variables in Vercel:
+
+- `DATABASE_URL`: connection string for the production Postgres database.
+- `CLERK_SECRET_KEY`: production Clerk secret key for API authentication and the Clerk proxy.
+- `CLERK_PUBLISHABLE_KEY`: production Clerk publishable key used by the API.
+- `VITE_CLERK_PUBLISHABLE_KEY`: production Clerk publishable key embedded in the VYRO frontend at build time.
+- `VITE_CLERK_PROXY_URL`: set to `/api/__clerk` when using Clerk's same-domain proxy.
+
+Apply a reviewed production database migration before serving traffic. Do not use the development `push` command against production.
 
 ## Granting catalogue administrator access
 

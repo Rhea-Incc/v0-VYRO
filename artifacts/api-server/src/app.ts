@@ -10,6 +10,7 @@ import {
   clerkProxyMiddleware,
   getClerkProxyHost,
 } from "./middlewares/clerkProxyMiddleware";
+import { ensureDefaultInventoryLocation } from "./lib/bootstrap";
 
 const app: Express = express();
 
@@ -34,6 +35,11 @@ app.use(
 );
 
 app.use(CLERK_PROXY_PATH, clerkProxyMiddleware());
+let inventoryLocationReady: Promise<void> | undefined;
+app.use("/api", (_req, _res, next) => {
+  inventoryLocationReady ??= ensureDefaultInventoryLocation();
+  void inventoryLocationReady.then(() => next(), next);
+});
 app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
